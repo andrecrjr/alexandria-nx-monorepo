@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@alexandria/shadcn-ui": ["shared/shadcn-ui/src/index.ts"],
+      "@alexandria/shadcn-ui/*": ["shared/shadcn-ui/src/*"]
+    }
+  }
+}

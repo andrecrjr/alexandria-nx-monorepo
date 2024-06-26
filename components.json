@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "default",
+  "rsc": false,
+  "tailwind": {
+    "config": "apps/alexandria-admin/tailwind.config.js",
+    "css": "apps/alexandria-admin/styles/global.css",
+    "baseColor": "slate",
+    "cssVariables": true
+  },
+  "aliases": {
+    "components": "@alexandria/shadcn-ui/components",
+    "utils": "@alexandria/shadcn-ui/utils"
+  }
+}
