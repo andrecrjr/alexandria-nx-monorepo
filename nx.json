@@ -35,9 +35,6 @@
         "targetName": "test"
       },
       "exclude": [
-        "apps/alexandria-e2e/**/*",
-        "backend-e2e/**/*",
-        "backend-e2e/**/*",
         "backend/alexandria-api-e2e/**/*"
       ]
     },
