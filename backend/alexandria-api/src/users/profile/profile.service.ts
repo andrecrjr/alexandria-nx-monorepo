@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'prisma/prisma.service';
-import { exclude } from 'src/utils';
 import { Prisma } from '@prisma/client';
 import { UpdateUserProfileDTO, UserDTO } from '../User.dto';
-import { JwtDTO } from 'src/auth/jwt.dto';
 import { ProfileDTO } from './profile.dto';
+import { JwtDTO } from '../../auth/jwt.dto';
+import {PrismaService} from "../../../prisma/prisma.service"
+import { exclude } from '../../utils';
 
 @Injectable()
 export class ProfileService {

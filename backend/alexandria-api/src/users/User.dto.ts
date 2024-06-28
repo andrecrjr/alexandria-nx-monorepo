@@ -10,7 +10,6 @@ import {
 } from 'class-validator';
 import { ProfileDTO, UpdateProfileDTO } from './profile/profile.dto';
 import { Type } from 'class-transformer';
-import { postAuthUser } from '@alexandria/shared-dto-api';
 
 export class UserDTO {
   id?: number;
@@ -55,7 +54,7 @@ export class CreateUserDTO {
 
   @IsBoolean()
   @IsOptional()
-  userActive: boolean = true;
+  userActive: boolean;
 }
 
 export class UpdateUserProfileDTO extends PartialType(CreateUserDTO) {

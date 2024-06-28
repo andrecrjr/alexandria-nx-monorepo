@@ -1,0 +1,132 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 Int       @id @default(autoincrement())
+  username           String?   @unique
+  email              String    @unique
+  password           String
+  profile            Profile?  @relation(fields: [id], references: [id], onDelete: Cascade)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  userCreatedContent Content[]
+  userCreatedAuthors AuthorContent[]
+  userActive Boolean @default(true)
+  seriesCreated     SeriesContent[]
+}
+
+model Profile {
+  id              Int    @id @default(autoincrement())
+  bio             String? @default("")
+  location        String?
+  age             Int?
+  gender          String?
+  interests       String[] // Pode ser um array de interesses
+  userCollections Collection[]
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  user            User?
+}
+
+model Collection {
+  id        Int      @id @default(autoincrement())
+  currentStatusTrack String? // Ex: Lendo, Lido, Pausado, Abandonado, etc.
+  page      Int      @default(10)
+  profileId Int      @map("profile_id")
+  contentId Int      @map("content_id")
+  content   Content  @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  profile   Profile? @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@unique([contentId, profileId])
+}
+
+model SeriesContent {
+  id        Int      @id @default(autoincrement())
+  title          String
+  description    String?
+  category       ContentType[]
+  imageUrl       String?
+  createdBy      User?          @relation(fields: [createdById], references: [id])
+  seriesCreator  AuthorContent[]
+  createdById    Int?
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  contents       Content[]
+  genres       Genre[] 
+  synonyms String[]    
+}
+
+model Genre {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  series SeriesContent[]
+  content Content[]
+}
+
+model StatusTrackUser {
+  id          Int           @id @default(autoincrement())
+  statusHistory String[]
+  contentType ContentType[]
+}
+
+model ContentType {
+  id        Int      @id @default(autoincrement())
+  title       String                @unique
+  description String?
+  statusTracker StatusTrackUser? @relation(fields: [statusTrackerId], references: [id])
+  statusTrackerId Int?
+  contents   Content[]
+  series SeriesContent[]
+}
+
+model Content {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  contentType     ContentType  @relation(fields: [contentTypeId], references: [id])
+  contentTypeId      Int
+  isbn        String?
+  imageUrl    String?
+  createdBy   User?        @relation(fields: [createdById], references: [id])
+  createdById Int?
+  createdAt   DateTime     @default(now())
+  collection  Collection[]
+  numberPages Int?
+  series  SeriesContent? @relation(fields: [seriesId], references: [id])
+  seriesId Int?
+  authors AuthorContent[]
+  genres Genre[]
+  synonyms String[]
+}
+
+model AuthorContent {
+  id            Int      @id @default(autoincrement())
+  name          String?
+  bio           String?
+  born          DateTime?
+  died          DateTime?
+  nationality   String?
+  awards        String[]
+  photoUrl      String?
+  website       String?
+  genres        String[]  
+  socialMedia   Json? 
+  bestSellers   String[]  
+  influences    String[]    
+  influenced    String[]     
+  contents      Content[]
+  createdBy   User? @relation(fields: [createdById], references: [id])
+  createdById Int?
+  series SeriesContent[]
+}
