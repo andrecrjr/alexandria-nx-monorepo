@@ -17,7 +17,6 @@
     "paths": {
       "@alexandria/shadcn-ui": ["shared/shadcn-ui/src/index.ts"],
       "@alexandria/shadcn-ui/*": ["shared/shadcn-ui/src/*"],
-      "@alexandria/shared-dto-api/*": ["shared/shared-dto-api/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
