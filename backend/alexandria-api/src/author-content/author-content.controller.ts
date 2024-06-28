@@ -13,7 +13,7 @@ import { AuthorContentService } from './author-content.service';
 import { CreateAuthorContentDto } from './dto/create-author-content.dto';
 import { UpdateAuthorContentDto } from './dto/update-author-content.dto';
 import { ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from '@nestjs/passport';
+import { AuthGuard } from "../auth/auth.guard"
 
 @Controller('author-content')
 @ApiTags('Content Creator or Author')

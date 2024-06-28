@@ -2,7 +2,8 @@ import { Body, Controller, Post, Req, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ApiTags } from '@nestjs/swagger';
 
-import AuthCredentials from "@alexandria/shared-dto-api/authentication"
+import {AuthCredentials} from "@alexandria/shared-dto-api/authentication/auth.dto"
+
 @ApiTags('Authentication')
 @Controller('auth')
 export class AuthController {

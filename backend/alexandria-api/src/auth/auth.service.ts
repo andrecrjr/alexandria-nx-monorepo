@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { UsersService } from '../users/users.service';
+import { AuthCredentials } from '@alexandria/shared-dto-api/authentication/auth.dto';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +20,7 @@ export class AuthService {
     return null;
   }
 
-  async login(user: AuthLoginDTO) {
+  async login(user: AuthCredentials) {
     try {
       const { email, id } = await this.usersService.findOne(user.email);
       const payload = { email: email, sub: id };
