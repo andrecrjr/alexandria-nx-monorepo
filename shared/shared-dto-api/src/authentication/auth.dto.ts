@@ -6,7 +6,7 @@ export class AuthCredentials  {
     @IsEmail()
     email: string;
 
-    @ApiProperty({ required: false })
+    @ApiProperty({ required: true })
     @IsOptional()
     @MinLength(6)
     password?: string; // Marking password as optional using ?
