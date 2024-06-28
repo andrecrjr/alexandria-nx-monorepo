@@ -1,8 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from 'src/users/users.service';
 import * as bcrypt from 'bcrypt';
-import { AuthLoginDTO } from 'src/users/User.dto';
+import { UsersService } from '../users/users.service';
 
 @Injectable()
 export class AuthService {
@@ -11,7 +10,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(email: string, pass: string): Promise<any> {
+  async validateUser(email: string, pass: string) {
     const user = await this.usersService.findOne(email);
     if (user && (await bcrypt.compare(pass, user.password))) {
       delete user['password'];
@@ -32,8 +31,6 @@ export class AuthService {
       throw new NotFoundException(`User Account not found`);
     }
   }
-
-  async rotationToken() {}
 
   async refreshTokenCreation(user: { email: string; sub: number }) {
     return await this.jwtService.signAsync(user, {

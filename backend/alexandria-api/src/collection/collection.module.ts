@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { PrismaService } from 'prisma/prisma.service';
 import { CollectionService } from './collection.service';
 import { CollectionController } from './collection.controller';
+import { PrismaService } from 'backend/alexandria-api/prisma/prisma.service';
 
 @Module({
   controllers: [CollectionController],

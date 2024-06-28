@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'prisma/prisma.service';
 import { CreateCollectionDto, UpdateCollectionDto } from './collection.dto';
-import { JwtDTO } from 'src/auth/jwt.dto';
 import { CollectionDTO } from './collection';
+import { JwtDTO } from '../auth/jwt.dto';
+import { PrismaService } from 'backend/alexandria-api/prisma/prisma.service';
 
 @Injectable()
 export class CollectionService {

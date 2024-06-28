@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'prisma/prisma.service';
 import { ContentDTO, CreateContentDTO, UpdateContentDTO } from './content.dto';
 import { Prisma } from '@prisma/client';
-import { JwtDTO } from 'src/auth/jwt.dto';
+import { PrismaService } from 'backend/alexandria-api/prisma/prisma.service';
+import { JwtDTO } from '../auth/jwt.dto';
 
 @Injectable()
 export class ContentService {

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { GenreContentDTO } from './dto/genre-content.dto';
 import { UpdateGenreContentDto } from './dto/update-genre-content.dto';
 import { CreateGenreContentDto } from './dto/create-genre-content.dto';
-import { PrismaService } from 'prisma/prisma.service';
+import { PrismaService } from 'backend/alexandria-api/prisma/prisma.service';
 
 @Injectable()
 export class GenreContentService {

@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAuthorContentDto } from './dto/create-author-content.dto';
 import { UpdateAuthorContentDto } from './dto/update-author-content.dto';
-import { PrismaService } from 'prisma/prisma.service';
 import { Prisma } from '@prisma/client';
-import { JwtDTO } from 'src/auth/jwt.dto';
-import { ContentIdDTO } from 'src/content/content.dto';
 import { AuthorContentDTO } from './entities/author-content.dto';
+import { ContentIdDTO } from '../content/content.dto';
+import { PrismaService } from 'backend/alexandria-api/prisma/prisma.service';
+import { JwtDTO } from '../auth/jwt.dto';
 
 @Injectable()
 export class AuthorContentService {

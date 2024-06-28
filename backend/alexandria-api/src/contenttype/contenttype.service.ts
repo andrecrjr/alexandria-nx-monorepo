@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { PrismaService } from 'prisma/prisma.service';
 import { ContentTypeDTO, CreateContentTypeDTO } from './contenttype.dto';
+import { PrismaService } from 'backend/alexandria-api/prisma/prisma.service';
 
 @Injectable()
 export class ContenttypeService {
