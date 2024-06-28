@@ -10,7 +10,6 @@ import {
 } from 'class-validator';
 import { ProfileDTO, UpdateProfileDTO } from './profile/profile.dto';
 import { Type } from 'class-transformer';
-import {postAuthorUser} from "@alexandria/shared-dto-api/lib/"
 
 export class UserDTO {
   id?: number;
