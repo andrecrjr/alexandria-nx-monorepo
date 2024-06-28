@@ -7,10 +7,10 @@ import {
   IsDate,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { CollectionDTO } from 'src/collection/collection';
 import { CreateUserDTO } from '../User.dto';
 import { ApiProperty } from '@nestjs/swagger';
 import { PartialType } from '@nestjs/mapped-types';
+import { CollectionDTO } from '../../collection/collection';
 
 export class ProfileDTO {
   @IsInt()

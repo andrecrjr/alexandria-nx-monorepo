@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { PrismaService } from 'prisma/prisma.service';
 import { CreateSeriesContentDto } from './dto/create-series-content.dto';
 import { UpdateSeriesContentDto } from './dto/update-series-content.dto';
 import { SeriesContentDTOForGenre } from './entities/series-content.entity';
+import { PrismaService } from 'backend/alexandria-api/prisma/prisma.service';
 
 @Injectable()
 export class SeriesContentService {

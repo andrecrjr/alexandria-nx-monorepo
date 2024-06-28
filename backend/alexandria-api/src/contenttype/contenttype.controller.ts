@@ -1,8 +1,8 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ContenttypeService } from './contenttype.service';
 import { CreateContentTypeDTO } from './contenttype.dto';
-import { AuthGuard } from 'src/auth/auth.guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('contenttype')
 @ApiTags('Content Types for Content')

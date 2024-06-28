@@ -1,8 +1,8 @@
 import { OmitType } from '@nestjs/mapped-types';
 import { Type } from 'class-transformer';
 import { IsDate, IsInt, IsString } from 'class-validator';
-import { ContentDTO } from 'src/content/content.dto';
-import { SeriesContentDTOForGenre } from 'src/series-content/entities/series-content.entity';
+import { SeriesContentDTOForGenre } from '../../series-content/entities/series-content.entity';
+import { ContentDTO } from '../../content/content.dto';
 
 export class GenreContentDTO {
   @IsInt()

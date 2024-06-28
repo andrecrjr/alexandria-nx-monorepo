@@ -11,7 +11,7 @@ import {
   IsInt,
   ValidateNested,
 } from 'class-validator';
-import { CreateUserDTO } from 'src/users/User.dto';
+import { CreateUserDTO } from '../../users/User.dto';
 
 export class AuthorContentDTO {
   @IsOptional()

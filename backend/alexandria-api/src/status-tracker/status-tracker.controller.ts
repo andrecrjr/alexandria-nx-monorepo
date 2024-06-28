@@ -12,7 +12,7 @@ import { StatusTrackerService } from './status-tracker.service';
 import { CreateStatusTrackDto } from './dto/create-status-tracker.dto';
 import { UpdateStatusTrackDto } from './dto/update-status-tracker.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from 'src/auth/auth.guard';
+import { AuthGuard } from '../auth/auth.guard';
 
 @Controller('status-tracker')
 @ApiTags('Status for Content Types')

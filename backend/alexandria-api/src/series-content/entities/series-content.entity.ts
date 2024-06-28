@@ -1,9 +1,9 @@
 import { IsArray, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
-import { ContentDTO } from 'src/content/content.dto';
-import { AuthorContentDTO } from 'src/author-content/entities/author-content.dto';
-import { ContentTypeDTO } from 'src/contenttype/contenttype.dto';
-import { GenreContentForSeriesTrackerDTO } from 'src/genre-content/dto/genre-content.dto';
+import { ContentTypeDTO } from '../../contenttype/contenttype.dto';
+import { AuthorContentDTO } from '../../author-content/entities/author-content.dto';
+import { ContentDTO } from '../../content/content.dto';
+import { GenreContentForSeriesTrackerDTO } from '../../genre-content/dto/genre-content.dto';
 
 export class SeriesContentDTO {
   @IsString()

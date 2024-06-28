@@ -7,11 +7,11 @@ import {
   ValidateNested,
   IsEnum,
 } from 'class-validator';
-import { AuthorIdDTO } from 'src/author-content/entities/author-content.dto';
-import { ContentIdDTO } from 'src/content/content.dto';
-import { ContentTypeIDDTO } from 'src/contenttype/contenttype.dto';
-import { GenreIdDTO } from 'src/genre-content/dto/create-genre-content.dto';
-import { UserIdDTO } from 'src/users/User.dto';
+import { ContentTypeIDDTO } from '../../contenttype/contenttype.dto';
+import { UserIdDTO } from '../../users/User.dto';
+import { AuthorIdDTO } from '../../author-content/entities/author-content.dto';
+import { ContentIdDTO } from '../../content/content.dto';
+import { GenreIdDTO } from '../../genre-content/dto/create-genre-content.dto';
 
 export class CreateSeriesContentDto {
   @ApiProperty()

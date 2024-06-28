@@ -10,8 +10,8 @@ import {
   IsInt,
   ValidateNested,
 } from 'class-validator';
-import { ContentIdDTO } from 'src/content/content.dto';
-import { UserIdDTO } from 'src/users/User.dto';
+import { UserIdDTO } from '../../users/User.dto';
+import { ContentIdDTO } from '../../content/content.dto';
 
 export class CreateAuthorContentDto {
   @ApiProperty()

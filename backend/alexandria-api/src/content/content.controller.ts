@@ -11,9 +11,9 @@ import {
 } from '@nestjs/common';
 import { ContentService } from './content.service';
 import { CreateContentDTO, UpdateContentDTO } from './content.dto';
-import { AuthGuard } from 'src/auth/auth.guard';
-import { IRequestJWT } from 'src/auth/jwt.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '../auth/auth.guard';
+import { IRequestJWT } from '../auth/jwt.dto';
 
 @Controller('content')
 @ApiTags('Content Creation')

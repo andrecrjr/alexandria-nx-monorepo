@@ -9,9 +9,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from 'src/auth/auth.guard';
 import { ProfileService } from './profile.service';
 import { UpdateUserProfileDTO } from '../User.dto';
+import { AuthGuard } from '../../auth/auth.guard';
 
 @Controller('users/profile')
 @ApiTags('User Profile')

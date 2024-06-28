@@ -7,9 +7,9 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { ContentIdDTO } from 'src/content/content.dto';
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { StatusTrackIdDTO } from '../status-tracker/dto/create-status-tracker.dto';
+import { ContentIdDTO } from '../content/content.dto';
 
 export class ContentTypeDTO {
   id: number;

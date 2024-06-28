@@ -1,4 +1,4 @@
-import { ContentTypeDTO } from 'src/contenttype/contenttype.dto';
+import { ContentTypeDTO } from "../../contenttype/contenttype.dto";
 
 export class StatusTrackerDTO {
   id: number;

@@ -10,8 +10,8 @@ import {
 } from '@nestjs/common';
 import { CollectionService } from './collection.service';
 import { CreateCollectionDto, UpdateCollectionDto } from './collection.dto';
-import { AuthGuard } from 'src/auth/auth.guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '../auth/auth.guard';
 
 @ApiTags('User Pagination and Content Update')
 @Controller('collection')

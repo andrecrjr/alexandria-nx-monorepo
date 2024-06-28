@@ -7,13 +7,12 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { CollectionDTO } from 'src/collection/collection';
-import { ContentTypeDTO } from 'src/contenttype/contenttype.dto';
-import { ApiProperty } from '@nestjs/swagger';
-import { AuthorIdDTO } from 'src/author-content/entities/author-content.dto';
-import { PartialType, PickType } from '@nestjs/mapped-types';
-import { GenreIdDTO } from 'src/genre-content/dto/create-genre-content.dto';
-import { UpdateUserProfileDTO, UserDTO } from 'src/users/User.dto';
+import { ApiProperty, PartialType, PickType } from '@nestjs/swagger';
+import { ContentTypeDTO } from '../contenttype/contenttype.dto';
+import { UpdateUserProfileDTO, UserDTO } from '../users/User.dto';
+import { CollectionDTO } from '../collection/collection';
+import { AuthorIdDTO } from '../author-content/entities/author-content.dto';
+import { GenreIdDTO } from '../genre-content/dto/create-genre-content.dto';
 
 export class ContentDTO {
   @IsInt()

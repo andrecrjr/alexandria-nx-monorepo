@@ -92,7 +92,3 @@ export class UserIdDTO {
   @IsString()
   id?: number;
 }
-
-
-export const AuthUserDTO = postAuthUser(ApiProperty);
-export class AuthUserDTOBody extends AuthUserDTO {}

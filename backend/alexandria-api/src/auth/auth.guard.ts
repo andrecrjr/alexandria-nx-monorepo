@@ -6,9 +6,8 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { jwtConstants } from 'src/constants';
-import { Request } from 'express';
 import { AmazonService } from './amazon-service/amazon-service.service';
+import { jwtConstants } from '../constants';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -43,7 +42,7 @@ export class AuthGuard implements CanActivate {
     return true;
   }
 
-  private extractTokenFromHeader(request: Request): string | undefined {
+  private extractTokenFromHeader(request): string | undefined {
     const [type, token] = request.headers.authorization?.split(' ') ?? [];
     const secureToken = token ?? request.cookies['accessToken'];
     return type === 'Bearer' || secureToken ? token || secureToken : undefined;
