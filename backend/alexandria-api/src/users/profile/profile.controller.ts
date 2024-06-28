@@ -10,8 +10,8 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { ProfileService } from './profile.service';
-import { UpdateUserProfileDTO } from '../User.dto';
 import { AuthGuard } from '../../auth/auth.guard';
+import { UpdateUserProfileDTO } from '@alexandria/shared-dto-api/user/users.dto';
 
 @Controller('users/profile')
 @ApiTags('User Profile')
@@ -25,7 +25,7 @@ export class ProfileController {
   }
 
   @Get(':id')
-  getPublicProfile(@Param() { id }) {
+  getPublicProfile(@Param() id) {
     return this.profileService.getPublicUser(parseInt(id));
   }
 

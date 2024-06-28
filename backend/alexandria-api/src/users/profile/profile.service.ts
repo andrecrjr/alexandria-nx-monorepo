@@ -64,7 +64,7 @@ export class ProfileService {
   }
 
   async getPublicUser(id: number): Promise<UserDTO | null> {
-    const updateData = await this.prismaService.user.findFirstOrThrow({
+    const updateData = await this.prismaService.user.findFirst({
       where: {
         id,
       },

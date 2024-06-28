@@ -1,13 +1,11 @@
 import {ApiProperty} from "@nestjs/swagger"
 import {IsEmail, IsOptional, MinLength} from "class-validator"
+import { AuthCredentialsSchema } from "./formSchema";
 
-export class AuthCredentials  {
+export class AuthCredentials extends AuthCredentialsSchema  {
     @ApiProperty({ required: true })
-    @IsEmail()
     email: string;
-
+    
     @ApiProperty({ required: true })
-    @IsOptional()
-    @MinLength(6)
     password?: string; // Marking password as optional using ?
 }
