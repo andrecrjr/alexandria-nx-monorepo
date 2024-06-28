@@ -1,0 +1,88 @@
+
+### AUTH Login
+# @name login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "andre-carlos@Live.com",
+  "password": "123456"
+}
+
+### REFRESH COOKIE 
+# @name login
+POST http://localhost:3000/auth/refresh
+Authorization: Bearer {{login.response.body.accessToken}}
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJzdWIiOjEsImlhdCI6MTcxODc1MzE1NiwiZXhwIjoxNzIxMzQ1MTU2fQ.mrmfu82jpo890pvfl_P581zRLLaDE6c9w9yDNYD0ovs; Max-Age=86400000; Path=/; HttpOnly
+
+### create status content type
+POST http://localhost:3000/status-contentype
+Authorization: Bearer {{login.response.body.accessToken}}
+Content-Type: application/json
+
+{
+  "name": [
+    "lendo",
+    "lido",
+    "abandonado"
+  ]
+}
+
+### create content type
+POST http://localhost:3000/contenttype
+Authorization: Bearer {{login.response.body.accessToken}}
+Content-Type: application/json
+
+{
+    "name":"Livro",
+    "statusType": {
+      "id": 1
+    }
+}
+
+### GET all content type
+GET http://localhost:3000/contenttype
+Authorization: Bearer {{login.response.body.accessToken}}
+Content-Type: application/json
+
+{
+    "name":"mangá",
+    "statusType": {
+      "id": 1
+    }
+}
+
+### create content
+POST http://localhost:3000/content
+Authorization: Bearer {{login.response.body.accessToken}}
+Content-Type: application/json
+
+{
+  "title": "Harry potter e o prisioneiro de askaban",
+  "numberPages": 500,
+  "isbn": "578457542",
+  "description": "new book",
+  "contentTypeId": 2
+}
+
+### get all content
+GET http://localhost:3000/content/all
+
+### get one content
+GET http://localhost:3000/content/3
+Authorization: Bearer {{login.response.body.accessToken}}
+
+### update one content
+PATCH http://localhost:3000/content/3
+Authorization: Bearer {{login.response.body.accessToken}}
+Content-Type: application/json
+
+{
+    "genres": [
+        {"id":1}, {"id":2}
+    ]
+}
+
+### Search content
+GET http://localhost:3000/content/search?q=
+Authorization: Bearer {{login.response.body.accessToken}}

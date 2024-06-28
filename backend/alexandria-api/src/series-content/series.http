@@ -1,0 +1,31 @@
+### AUTH Login
+# @name login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "andre-carlos@Live.com",
+  "password": "123456"
+}
+
+### GET unique serie
+GET http://localhost:3000/series-content/41
+
+### POST unique serie
+POST http://localhost:3000/series-content
+Content-Type: application/json
+
+{
+  "title":"Naruto",
+  "category": [{"id":1}, {"id":2}]
+}
+
+### EDIT unique serie
+PATCH http://localhost:3000/series-content/41
+Content-Type: application/json
+
+{
+  "contents":[{
+    "id":2
+  }]
+}

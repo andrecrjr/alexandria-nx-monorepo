@@ -1,0 +1,27 @@
+
+### AUTH Login
+# @name login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "123456"
+}
+
+### find
+
+GET http://localhost:3000/status-tracker/all
+
+### updated
+PATCH http://localhost:3000/status-tracker/1
+Content-Type: application/json
+
+{
+"statusHistory": [
+      "reading",
+      "completed",
+      "paused",
+      "abandoned"
+    ]
+}

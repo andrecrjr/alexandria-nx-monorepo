@@ -1,0 +1,50 @@
+
+### create user
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "email": "andre-carlos@Live.com",
+  "username":"andrecrjr",
+  "password": "123456"
+}
+
+### AUTH Login
+# @name login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "andre-carlos@Live.com",
+  "password": "123456"
+}
+
+### REFRESH COOKIE 
+POST http://localhost:3000/auth/refresh
+Authorization: Bearer {{login.response.body.accessToken}}
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZHJlLWNhcmxvc0BMaXZlLmNvbSIsInN1YiI6MiwiaWF0IjoxNzE4NzUzODA2LCJleHAiOjE3MjEzNDU4MDZ9.knpbz5zrRrH9xCiHPRvUd-TfkjkpFvdF-8sCjmd0Z_k; Max-Age=86400000; Path=/; HttpOnly
+
+### AUTH GET All user Profile
+GET http://localhost:3000/users/profile/all
+
+### AUTH GET User Profile
+GET http://localhost:3000/users/profile
+Authorization: Bearer {{login.response.body.accessToken}}
+
+### GET unique public profile
+GET http://localhost:3000/users/profile/1
+
+### UPDATE profile
+PATCH  http://localhost:3000/users/profile
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.accessToken}}
+
+{
+  "profile":{
+    "gender":"M",
+    "bio":"um jovem desenvolvedor otaku"
+  }
+}
+
+### DELETE user/profile
+DELETE  http://localhost:3000/users/profile

@@ -1,0 +1,48 @@
+### AUTH Login
+# @name login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "andre-carlos@Live.com",
+  "password": "123456"
+}
+
+### create status tracker
+POST http://localhost:3000/status-tracker
+Authorization: Bearer {{login.response.body.accessToken}}
+Content-Type: application/json
+
+{
+  "statusHistory": [
+    "lendo",
+    "lido",
+    "abandonado"
+  ]
+}
+
+### create content type
+POST http://localhost:3000/contenttype
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.accessToken}}
+
+{
+    "title":"manga",
+    "description":"Tracker for books",
+    "statusTracker": {
+      "id": 1
+    }
+}
+
+
+### GET all content type
+GET http://localhost:3000/contenttype
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.accessToken}}
+
+{
+    "name":"book",
+    "statusType": {
+      "id": 1
+    }
+}
