@@ -1,7 +1,7 @@
 import { Button } from '@alexandria/shadcn-ui';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
-import { TableComponent } from './molecules/Table';
+import List from './Pages/List';
 
 
 export function App() {
@@ -21,7 +21,7 @@ export function App() {
         <Route
           path="/admin"
           element={
-            <TableComponent />
+            <List />
           }
         />
       </Routes>
