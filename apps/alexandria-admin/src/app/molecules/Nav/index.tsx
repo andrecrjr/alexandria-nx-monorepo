@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 
 
 const Aside = () => {
-  return (<aside className="hidden w-64 flex-col border-r bg-background p-4 md:flex">
+  return (
+      <aside className="hidden w-64 flex-col border-r bg-background p-4 md:flex">
         <div className="mb-6">
           <Link to="#" className="flex items-center gap-2 font-semibold" >
             <BookIcon className="h-6 w-6" />
@@ -32,7 +33,14 @@ const Aside = () => {
             className="flex items-center gap-2 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             <BookIcon className="h-4 w-4" />
-            <span>Books</span>
+            <span>Generic Content</span>
+          </Link>
+          <Link
+            to="#"
+            className="flex items-center gap-2 rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            <BookIcon className="h-4 w-4" />
+            <span>Content Type</span>
           </Link>
         </nav>
       </aside>);

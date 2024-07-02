@@ -1,7 +1,6 @@
-import { BookIcon, Button, DropdownMenu, Table, DropdownMenuContent, 
-  DropdownMenuItem, DropdownMenuTrigger, MenuIcon, MoveHorizontalIcon, PlusIcon, 
-  TableBody, TableCell, TableHead, TableHeader, TableRow, UsersIcon } from "@alexandria/shadcn-ui";
-import { Link } from "react-router-dom";
+import { Button, DropdownMenu, Table, DropdownMenuContent, 
+  DropdownMenuItem, DropdownMenuTrigger, MoveHorizontalIcon, PlusIcon, 
+  TableBody, TableCell, TableHead, TableHeader, TableRow } from "@alexandria/shadcn-ui";
 
 export function TableComponent() {
   return (
