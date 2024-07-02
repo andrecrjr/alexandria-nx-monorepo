@@ -1,19 +1,19 @@
-import NxWelcome from './nx-welcome';
-
+import { Button } from '@alexandria/shadcn-ui';
 import { Route, Routes, Link } from 'react-router-dom';
-import {Button} from "@alexandria/shadcn-ui/components/ui/button"
-import {Label} from "@alexandria/shadcn-ui/components/ui/label"
+import Layout from './Layout';
 
 
 export function App() {
+  
   return (
+      <Layout>
       <Routes>
         <Route
           path="/"
           element={
             <div>
               This is the generated root route.{' '}
-              <Link to="/page-2">Click here for page 2.</Link>
+              <Button>Click here for page 2.</Button>
             </div>
           }
         />
@@ -26,6 +26,7 @@ export function App() {
           }
         />
       </Routes>
+      </Layout>
   );
 }
 
