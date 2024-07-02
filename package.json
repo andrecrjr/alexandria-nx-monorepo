@@ -26,6 +26,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "fastify-cookie": "^5.7.0",
+    "lucide-react": "^0.400.0",
     "passport-local": "^1.0.0",
     "prisma": "^5.16.0",
     "react": "18.3.1",

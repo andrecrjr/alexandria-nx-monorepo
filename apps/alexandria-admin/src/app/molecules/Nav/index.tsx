@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 
 const Aside = () => {
-  return (<aside className="w-64 flex-col border-r bg-background p-4 md:flex">
+  return (<aside className="hidden w-64 flex-col border-r bg-background p-4 md:flex">
         <div className="mb-6">
           <Link to="#" className="flex items-center gap-2 font-semibold" >
             <BookIcon className="h-6 w-6" />
-            <span>Alexandria Library</span>
+            <span>Alexandria Content Management</span>
           </Link>
         </div>
         <nav className="flex flex-col space-y-1">

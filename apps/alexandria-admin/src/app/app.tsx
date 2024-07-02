@@ -1,6 +1,7 @@
 import { Button } from '@alexandria/shadcn-ui';
 import { Route, Routes, Link } from 'react-router-dom';
 import Layout from './Layout';
+import { TableComponent } from './molecules/Table';
 
 
 export function App() {
@@ -18,11 +19,9 @@ export function App() {
           }
         />
         <Route
-          path="/page-2"
+          path="/admin"
           element={
-            <div>
-              <Link to="/">Click here to go back to root page.</Link>
-            </div>
+            <TableComponent />
           }
         />
       </Routes>
