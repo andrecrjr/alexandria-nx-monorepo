@@ -1,5 +1,5 @@
 import {IsEmail, IsOptional, MinLength} from "class-validator"
-export abstract class AuthCredentialsSchema {
+export class AuthCredentialsSchema {
     @IsEmail()
     email: string;
 

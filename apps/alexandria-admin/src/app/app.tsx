@@ -2,6 +2,7 @@ import { Button } from '@alexandria/shadcn-ui';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 import List from './Pages/List';
+import LoginPage from './Pages/LoginPage';
 
 
 export function App() {
@@ -12,10 +13,7 @@ export function App() {
         <Route
           path="/"
           element={
-            <div>
-              This is the generated root route.{' '}
-              <Button>Click here for page 2.</Button>
-            </div>
+            <LoginPage />
           }
         />
         <Route

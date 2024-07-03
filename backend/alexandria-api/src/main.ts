@@ -14,7 +14,7 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
-  const localRoutes = ['http://127.0.0.1:5173', 'http://localhost:5173'];
+  const localRoutes = ['http://127.0.0.1:4200', 'http://localhost:4200'];
 
   app.enableCors({
     origin: [...localRoutes],
