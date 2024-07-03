@@ -1,8 +1,8 @@
 import { Button } from '@alexandria/shadcn-ui';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
-import List from './Pages/List';
 import LoginPage from './Pages/LoginPage';
+import ListPage from './Pages/List';
 
 
 export function App() {
@@ -19,7 +19,7 @@ export function App() {
         <Route
           path="/admin"
           element={
-            <List />
+            <ListPage />
           }
         />
       </Routes>

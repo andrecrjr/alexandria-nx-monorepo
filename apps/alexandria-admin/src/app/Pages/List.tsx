@@ -3,8 +3,8 @@ import { ListTableComponent } from "../molecules/Table";
 import { PaginationComponent } from "../molecules/Pagination";
 
 
-const List = () => {
+const ListPage = () => {
   return (<div className="flex-1 mx-6 mt-6"><ListTableComponent/><PaginationComponent /></div>);
 };
 
-export default List;
+export default ListPage;
