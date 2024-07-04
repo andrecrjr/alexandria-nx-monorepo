@@ -9,6 +9,7 @@ import {
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { CreateUserSchemaDTO } from '../user/formSchema';
+import { CollectionDto } from '../collections/formSchema';
 
 export class CreateProfileSchemaDTO {
   @IsInt()
@@ -37,10 +38,10 @@ export class CreateProfileSchemaDTO {
   @IsOptional()
   interests?: string[];
 
-//   @ValidateNested({ each: true })
-//   @Type(() => CollectionDTO)
-//   @IsOptional()
-//   collections?: CollectionDTO[];
+  @ValidateNested({ each: true })
+  @Type(() => CollectionDto)
+  @IsOptional()
+  collections?: CollectionDto[];
 
   @IsOptional()
   @Type(() => CreateUserSchemaDTO)
@@ -54,7 +55,7 @@ export class ProfileDTO {
   age?: number;  
   gender?: string;
   interests?: string[];
-//   collections?: CollectionDTO[];
+  collections?: CollectionDto[];
   user?: CreateUserSchemaDTO;
 }
 
