@@ -61,7 +61,6 @@ export class ContenttypeService {
   }
 
   async updateContentType(id: number, data: UpdateContentTypeDTO): Promise<ContentTypeDTO> {
-    console.log("aaaaaa",id)
     const prismaData = this.updateContentTypePrisma(data);
     const updated = await this.prismaService.contentType.update({
       where:{
