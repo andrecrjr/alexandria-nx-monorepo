@@ -1,4 +1,3 @@
-import { PartialType } from '@nestjs/mapped-types';
 import { ApiProperty } from '@nestjs/swagger';
 import {
   IsBoolean,
@@ -10,7 +9,6 @@ import {
 import { Type } from 'class-transformer';
 import { CreateUserSchemaDTO } from './formSchema';
 import { UpdateProfileDTO } from '../profile/profile.dto';
-import { ProfileDTO } from '../profile/formSchema';
 
 export class CreateUserDTO extends CreateUserSchemaDTO {
   @ApiProperty()

@@ -1,6 +1,9 @@
 import { Type } from "class-transformer";
 import { IsDate, IsInt, IsOptional, IsString, ValidateNested } from "class-validator";
 import { UserDTO } from "../user/formSchema";
+import { GenreIdDTO } from "../genre-content/genre-content.dto";
+import { AuthorIdDTO } from "../authors/formSchema";
+import { ContentTypeDTO } from "../contentType/formSchema";
 
 export class ContentDTO {
   id: number;
@@ -9,7 +12,7 @@ export class ContentDTO {
   contentTypeId: number;
   numberPages: number;
   imageUrl?: string;
-//   contentType?: ContentTypeDTO;
+  contentType?: ContentTypeDTO;
 
   createdBy?: UserDTO;
   isbn?: string;
@@ -19,9 +22,9 @@ export class ContentDTO {
 
 //   collections?: CollectionDTO[];
 
-//   authors?: AuthorIdDTO[];
+  authors?: AuthorIdDTO[];
 
-//   genres?: GenreIdDTO[];
+  genres?: GenreIdDTO[];
 }
 
 
@@ -81,15 +84,10 @@ export class CreateContentSchemaDTO {
 //   })
 //   collections?: CollectionDTO[];
 
-//   @IsOptional()
-//   @Type(() => AuthorIdDTO)
-//   authors?: AuthorIdDTO[];
+  @IsOptional()
+  @Type(() => AuthorIdDTO)
+  authors?: AuthorIdDTO[];
 
-//   @IsOptional()
-//   @ApiProperty({
-//     description: "The genre's content",
-//     type: [GenreIdDTO],
-//     required: true,
-//   })
-//   genres?: GenreIdDTO[];
+  @IsOptional()
+  genres?: GenreIdDTO[];
 }

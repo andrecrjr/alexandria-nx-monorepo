@@ -3,10 +3,7 @@ import {
   IsInt,
   IsString,
   IsOptional,
-  IsDate,
-  ValidateNested,
 } from 'class-validator';
-import { Type } from 'class-transformer';
 import { ApiProperty, PartialType, PickType } from '@nestjs/swagger';
 import { ContentDTO, CreateContentSchemaDTO } from './formSchema';
 import { UpdateUserProfileDTO } from '../user/users.dto';
@@ -84,6 +81,5 @@ export class UpdateContentDTO extends PartialType(CreateContentSchemaDTO) {
 export class ContentIdDTO extends PickType(ContentDTO, ['id']) {
   @IsInt()
   @IsOptional()
-  @ApiProperty({ required: false })
   id: number;
 }
