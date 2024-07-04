@@ -4,7 +4,7 @@ import { PartialType } from "@nestjs/mapped-types";
 
 export class CreateCollectionDto extends CreateCollectionSchemaDTO {
   @ApiProperty()
-  currentStatusTrack: string;
+  currentStatusTrack?: string;
 
   @ApiProperty()
   page: number;
@@ -13,4 +13,13 @@ export class CreateCollectionDto extends CreateCollectionSchemaDTO {
   contentId: number;
 }
 
-export class UpdateCollectionDto extends PartialType(CreateCollectionDto) {}
+export class UpdateCollectionDto extends PartialType(CreateCollectionDto) {
+  @ApiProperty()
+  currentStatusTrack: string;
+
+  @ApiProperty()
+  page: number;
+
+  @ApiProperty()
+  contentId: number;
+}

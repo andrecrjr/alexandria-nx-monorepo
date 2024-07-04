@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { JwtDTO } from '../auth/jwt.dto';
 import { PrismaService } from 'backend/alexandria-api/prisma/prisma.service';
-import { CollectionDto, CreateCollectionSchemaDTO, UpdateCollectionDto } from '@alexandria/shared-dto-api/collections/formSchema';
+import { CollectionDto } from '@alexandria/shared-dto-api/collections/formSchema';
+import { CreateCollectionDto, UpdateCollectionDto } from '@alexandria/shared-dto-api/collections/collection.dto';
 
 @Injectable()
 export class CollectionService {
   constructor(private readonly prismaService: PrismaService) {}
-  async createUserWithContent(user: JwtDTO, data: CreateCollectionSchemaDTO) {
+  async createUserWithContent(user: JwtDTO, data: CreateCollectionDto) {
     const collectionUserData = await this.prismaService.collection.create({
       data: {
         ...data,

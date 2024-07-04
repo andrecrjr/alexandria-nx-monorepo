@@ -14,10 +14,8 @@ import { ContentIdDTO } from '../content/content.dto';
 export class ContentTypeDTO {
   id: number;
 
-  @IsString()
   title: string;
 
-  @IsString()
   description: string;
 
   contents?: ContentIdDTO[];

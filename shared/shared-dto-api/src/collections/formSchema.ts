@@ -1,23 +1,19 @@
-import { IsInt, IsNotEmpty, IsString } from "class-validator";
+import { IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
 import { ContentDTO } from "../content/formSchema";
-import { PartialType } from "@nestjs/swagger";
 
 export class CollectionDto {
   id?: number;
   currentStatusTrack: string;
-
   page: number;
-
   contentId: number;
-
   profileId?: number;
-
   content: ContentDTO;
 }
 
 export class CreateCollectionSchemaDTO {
   @IsString()
-  currentStatusTrack: string;
+  @IsOptional()
+  currentStatusTrack?: string;
 
   @IsInt()
   @IsNotEmpty()
@@ -27,5 +23,3 @@ export class CreateCollectionSchemaDTO {
   @IsNotEmpty()
   contentId: number;
 }
-
-export class UpdateCollectionDto extends PartialType(CreateCollectionSchemaDTO) {}

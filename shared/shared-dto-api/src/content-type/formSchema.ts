@@ -7,7 +7,6 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { PartialType } from '@nestjs/swagger';
 import { ContentIdDTO } from '../content/content.dto';
 
 export class ContentTypeDTO {
@@ -44,7 +43,6 @@ export class CreateContentTypeSchemaDTO extends ContentTypeDTO {
   statusTrackerId: number;
 }
 
-export class UpdateContentTypeDTO extends PartialType(ContentTypeDTO) {}
 
 export class ContentTypeIDDTO {
   @IsInt()

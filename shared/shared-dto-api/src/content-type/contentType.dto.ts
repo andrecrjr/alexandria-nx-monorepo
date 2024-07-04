@@ -1,4 +1,4 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty, PartialType } from "@nestjs/swagger";
 import { CreateContentTypeSchemaDTO } from "./formSchema";
 import { ContentIdDTO } from "../content/content.dto";
 import { Type } from "class-transformer";
@@ -24,3 +24,5 @@ export class CreateContentTypeDTO extends CreateContentTypeSchemaDTO {
 
   statusTrackerId: number;
 }
+
+export class UpdateContentTypeDTO extends PartialType(CreateContentTypeDTO){}

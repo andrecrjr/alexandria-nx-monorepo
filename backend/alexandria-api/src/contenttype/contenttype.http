@@ -34,6 +34,17 @@ Authorization: Bearer {{login.response.body.accessToken}}
     }
 }
 
+### create content type
+PATCH http://localhost:3000/contenttype/3
+Content-Type: application/json
+Authorization: Bearer {{login.response.body.accessToken}}
+
+{
+    "statusTracker": {
+      "id":2
+    }
+}
+
 
 ### GET all content type
 GET http://localhost:3000/contenttype
