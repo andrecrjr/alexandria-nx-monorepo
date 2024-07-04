@@ -8,9 +8,8 @@ import {
   Delete,
 } from '@nestjs/common';
 import { GenreContentService } from './genre-content.service';
-import { CreateGenreContentDto } from './dto/create-genre-content.dto';
-import { UpdateGenreContentDto } from './dto/update-genre-content.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { CreateGenreContentDto, UpdateGenreContentDto } from '@alexandria/shared-dto-api/genre-content/genre-content.dto';
 
 @Controller('genre-content')
 @ApiTags("Genre's Content")

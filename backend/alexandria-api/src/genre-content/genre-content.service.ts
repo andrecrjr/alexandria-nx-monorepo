@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { GenreContentDTO } from './dto/genre-content.dto';
-import { UpdateGenreContentDto } from './dto/update-genre-content.dto';
-import { CreateGenreContentDto } from './dto/create-genre-content.dto';
 import { PrismaService } from 'backend/alexandria-api/prisma/prisma.service';
+import { CreateGenreContentDto, UpdateGenreContentDto } from '@alexandria/shared-dto-api/genre-content/genre-content.dto';
+import { GenreContentDTO } from '@alexandria/shared-dto-api/genre-content/formSchema';
 
 @Injectable()
 export class GenreContentService {

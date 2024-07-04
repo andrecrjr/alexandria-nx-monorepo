@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 
-import { StatusTrackerDTO } from './entities/status-tracker.entity';
 import { PrismaService } from 'backend/alexandria-api/prisma/prisma.service';
 import { CreateStatusTrackDto, UpdateStatusTrackDto } from '@alexandria/shared-dto-api/status-tracker/statusTracker.dto';
+import { StatusTrackerDto } from '@alexandria/shared-dto-api/status-tracker/formSchema';
 
 @Injectable()
 export class StatusTrackerService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async create(data: CreateStatusTrackDto): Promise<StatusTrackerDTO> {
+  async create(data: CreateStatusTrackDto): Promise<StatusTrackerDto> {
     this.prismaService.statusTrackUser;
     const newData = await this.prismaService.statusTrackUser.create({
       data: data,
@@ -16,11 +16,11 @@ export class StatusTrackerService {
     return newData;
   }
 
-  async findAll(): Promise<StatusTrackerDTO[] | null> {
+  async findAll(): Promise<StatusTrackerDto[] | null> {
     return await this.prismaService.statusTrackUser.findMany();
   }
 
-  async findOne(id: number): Promise<StatusTrackerDTO | null> {
+  async findOne(id: number): Promise<StatusTrackerDto | null> {
     return await this.prismaService.statusTrackUser.findFirst({
       where: { id },
     });

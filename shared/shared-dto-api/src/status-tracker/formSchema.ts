@@ -1,12 +1,12 @@
 import { PickType } from '@nestjs/mapped-types';
 import { IsArray, IsInt, IsOptional } from 'class-validator';
 
-export class StatusTrackDto {
+export class StatusTrackerDto {
   id: number;
   statusHistory: string[];
 }
 
-export class CreateStatusTrackSchemaDTO extends StatusTrackDto {
+export class CreateStatusTrackSchemaDTO extends StatusTrackerDto {
   @IsInt()
   @IsOptional()
   id: number;
