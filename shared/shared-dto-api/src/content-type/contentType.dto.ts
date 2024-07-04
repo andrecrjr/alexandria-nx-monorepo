@@ -3,6 +3,7 @@ import { CreateContentTypeSchemaDTO } from "./formSchema";
 import { ContentIdDTO } from "../content/content.dto";
 import { Type } from "class-transformer";
 import { ValidateNested } from "class-validator";
+import { StatusTrackIdDTO } from "../status-tracker/statusTracker.dto";
 
 export class CreateContentTypeDTO extends CreateContentTypeSchemaDTO {
 
@@ -17,9 +18,9 @@ export class CreateContentTypeDTO extends CreateContentTypeSchemaDTO {
   @Type(() => ContentIdDTO)
   contents: ContentIdDTO[];
 
-//   @ApiProperty({ required: true })
-//   @Type(() => StatusTrackIdDTO)
-//   statusTracker: StatusTrackIdDTO;
+  @ApiProperty({ required: true })
+  @Type(() => StatusTrackIdDTO)
+  statusTracker: StatusTrackIdDTO;
 
   statusTrackerId: number;
 }

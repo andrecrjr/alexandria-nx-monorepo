@@ -3,7 +3,8 @@ import { IsDate, IsInt, IsOptional, IsString, ValidateNested } from "class-valid
 import { UserDTO } from "../user/formSchema";
 import { GenreIdDTO } from "../genre-content/genre-content.dto";
 import { AuthorIdDTO } from "../authors/formSchema";
-import { ContentTypeDTO } from "../contentType/formSchema";
+import { ContentTypeDTO } from "../content-type/formSchema";
+import { CollectionDto } from "../collections/formSchema";
 
 export class ContentDTO {
   id: number;
@@ -20,7 +21,7 @@ export class ContentDTO {
   createdAt?: Date = new Date();
   updatedAt?: Date = new Date();
 
-//   collections?: CollectionDTO[];
+  collections?: CollectionDto[];
 
   authors?: AuthorIdDTO[];
 
@@ -49,10 +50,10 @@ export class CreateContentSchemaDTO {
   @IsOptional()
   imageUrl?: string;
 
-//   @IsOptional()
-//   @ValidateNested({ each: true })
-//   @Type(() => ContentTypeDTO)
-//   contentType?: ContentTypeDTO;
+  @IsOptional()
+  @ValidateNested({ each: true })
+  @Type(() => ContentTypeDTO)
+  contentType?: ContentTypeDTO;
 
   @ValidateNested({ each: true })
   @Type(() => UserDTO)
@@ -74,15 +75,10 @@ export class CreateContentSchemaDTO {
   @IsDate()
   updatedAt?: Date = new Date();
 
-//   @IsOptional()
-//   @ValidateNested({ each: true })
-//   @Type(() => CollectionDTO)
-//   @ApiProperty({
-//     description: 'The collections to which the content is associated.',
-//     type: [CollectionDTO],
-//     required: false,
-//   })
-//   collections?: CollectionDTO[];
+  @IsOptional()
+  @ValidateNested({ each: true })
+  @Type(() => CollectionDto)
+  collections?: CollectionDto[];
 
   @IsOptional()
   @Type(() => AuthorIdDTO)

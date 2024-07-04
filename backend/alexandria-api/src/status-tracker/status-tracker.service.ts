@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { CreateStatusTrackDto } from './dto/create-status-tracker.dto';
 
-import { UpdateStatusTrackDto } from './dto/update-status-tracker.dto';
 import { StatusTrackerDTO } from './entities/status-tracker.entity';
 import { PrismaService } from 'backend/alexandria-api/prisma/prisma.service';
+import { CreateStatusTrackDto, UpdateStatusTrackDto } from '@alexandria/shared-dto-api/status-tracker/statusTracker.dto';
 
 @Injectable()
 export class StatusTrackerService {

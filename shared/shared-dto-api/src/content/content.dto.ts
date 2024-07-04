@@ -3,10 +3,13 @@ import {
   IsInt,
   IsString,
   IsOptional,
+  ValidateNested,
 } from 'class-validator';
 import { ApiProperty, PartialType, PickType } from '@nestjs/swagger';
 import { ContentDTO, CreateContentSchemaDTO } from './formSchema';
 import { UpdateUserProfileDTO } from '../user/users.dto';
+import { Type } from 'class-transformer';
+import { CollectionDto } from '../collections/formSchema';
 
 
 export class CreateContentDTO extends CreateContentSchemaDTO {
@@ -22,6 +25,15 @@ export class CreateContentDTO extends CreateContentSchemaDTO {
     description: 'The identifier of the user who created the content.',
     required: true,
   })
+    @IsOptional()
+  @ValidateNested({ each: true })
+  @Type(() => CollectionDto)
+  @ApiProperty({
+    description: 'The collections to which the content is associated.',
+    type: [CollectionDto],
+    required: false,
+  })
+  collections?: CollectionDto[];
   createdById: number;
 }
 
