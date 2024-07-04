@@ -72,38 +72,12 @@ export class ContenttypeService {
   }
 
   async getAll(): Promise<ContentTypeDTO[]> {
-    // const page = parseInt('0') || 0;
-    // const limit = parseInt('10') || 10;
-
     const results = await this.prismaService['contentType'].findMany({
       include: {
         statusTracker: true,
       },
     });
 
-    // const results = await this.prismaService['contentType'].findMany({
-    //   take: limit,
-    //   skip: page * limit,
-    //   include: {
-    //     statusTracker: true,
-    //   },
-    // });
-
-    // // const count = await this.prismaService['contentType'].count();
-    // // const totalPages = Math.ceil(count / limit);
-    // // // Aqui você pode adicionar lógica para calcular o total de páginas, etc.
-    // // const paginationResult = {
-    // //   data: results,
-    // //   page: page + 1,
-    // //   limit,
-    // //   // total, totalPages, etc.
-    // //   count,
-    // //   totalPages,
-    // //   next: totalPages > page ? page + 1 : null,
-    // //   prev: totalPages < page ? page - 1 : null,
-    // // };
-
-    // return paginationResult;
     return results;
   }
 }
