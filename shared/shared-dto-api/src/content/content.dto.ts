@@ -10,31 +10,84 @@ import { ContentDTO, CreateContentSchemaDTO } from './formSchema';
 import { UpdateUserProfileDTO } from '../user/users.dto';
 import { Type } from 'class-transformer';
 import { CollectionDto } from '../collections/formSchema';
+import { UserDTO } from '../user/formSchema';
+import { ContentTypeDTO } from '../content-type/formSchema';
+import { AuthorIdDTO } from '../authors/formSchema';
+import { GenreIdDTO } from '../genre-content/genre-content.dto';
 
 
 export class CreateContentDTO extends CreateContentSchemaDTO {
-  @IsString()
+
+  @ApiProperty({ description: 'The title of the content.', required: true })
+  title: string;
+
+  @ApiProperty({
+    description: 'A detailed description of the content.',
+    required: true,
+  })
+  description: string;
+
+  @ApiProperty({
+    description: 'The identifier for the associated content type.',
+    required: true,
+  })
+  contentTypeId: number;
+
+  @ApiProperty({ description: 'The total number of pages in the content.' })
+  numberPages: number;
+
+  @ApiProperty({
+    description: "The URL of the content's cover image.",
+    required: false,
+  })
+  imageUrl?: string;
+
+  @ApiProperty({
+    description: `The content type's track for this Content`,
+  })
+  contentType?: ContentTypeDTO;
+
+  @ApiProperty({
+    description: `User that created this content`,
+  })
+  createdBy?: UserDTO;
+
   @ApiProperty({
     description: 'The International Standard Book Number (ISBN).',
     required: false,
   })
   isbn?: string;
-  @IsOptional()
-  @IsString()
+
   @ApiProperty({
     description: 'The identifier of the user who created the content.',
-    required: true,
+    required: false,
   })
-    @IsOptional()
-  @ValidateNested({ each: true })
-  @Type(() => CollectionDto)
+  createdById: number;
+
+  createdAt?: Date = new Date();
+
+  updatedAt?: Date = new Date();
+
   @ApiProperty({
     description: 'The collections to which the content is associated.',
     type: [CollectionDto],
     required: false,
   })
   collections?: CollectionDto[];
-  createdById: number;
+
+  @ApiProperty({
+    description: 'The authors of the content.',
+    type: [AuthorIdDTO],
+    required: false,
+  })
+  authors?: AuthorIdDTO[];
+
+  @ApiProperty({
+    description: "The genre's content",
+    type: [GenreIdDTO],
+    required: true,
+  })
+  genres?: GenreIdDTO[];
 }
 
 export class UpdateContentDTO extends PartialType(CreateContentSchemaDTO) {
@@ -77,13 +130,6 @@ export class UpdateContentDTO extends PartialType(CreateContentSchemaDTO) {
     required: false,
   })
   createdById?: number;
-
-  @ApiProperty({
-    description: 'The identifier of the user who created the content.',
-    required: false,
-  })
-  @IsOptional()
-  createdBy?: UpdateUserProfileDTO;
 
   createdAt?: Date;
 

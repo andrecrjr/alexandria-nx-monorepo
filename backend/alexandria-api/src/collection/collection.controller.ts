@@ -9,9 +9,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { CollectionService } from './collection.service';
-import { CreateCollectionDto, UpdateCollectionDto } from './collection.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '../auth/auth.guard';
+import { CreateCollectionDto, UpdateCollectionDto } from '@alexandria/shared-dto-api/collections/collection.dto';
 
 @ApiTags('User Pagination and Content Update')
 @Controller('collection')

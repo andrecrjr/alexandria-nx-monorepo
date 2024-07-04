@@ -1,13 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCollectionDto, UpdateCollectionDto } from './collection.dto';
-import { CollectionDTO } from './collection';
 import { JwtDTO } from '../auth/jwt.dto';
 import { PrismaService } from 'backend/alexandria-api/prisma/prisma.service';
+import { CollectionDto, CreateCollectionSchemaDTO, UpdateCollectionDto } from '@alexandria/shared-dto-api/collections/formSchema';
 
 @Injectable()
 export class CollectionService {
   constructor(private readonly prismaService: PrismaService) {}
-  async createUserWithContent(user: JwtDTO, data: CreateCollectionDto) {
+  async createUserWithContent(user: JwtDTO, data: CreateCollectionSchemaDTO) {
     const collectionUserData = await this.prismaService.collection.create({
       data: {
         ...data,
@@ -17,7 +16,7 @@ export class CollectionService {
     return collectionUserData;
   }
 
-  async getCollectionByUser(user: JwtDTO): Promise<CollectionDTO[]> {
+  async getCollectionByUser(user: JwtDTO): Promise<CollectionDto[]> {
     const userCollection = await this.prismaService.collection.findMany({
       where: { profileId: user.sub },
       include: {
@@ -52,7 +51,7 @@ export class CollectionService {
   async searchInsideCollectionByContentName(
     partialContent: string,
     user: JwtDTO,
-  ): Promise<CollectionDTO[]> {
+  ): Promise<CollectionDto[]> {
     const data = await this.prismaService.collection.findMany({
       where: {
         profileId: user.sub,
@@ -75,7 +74,7 @@ export class CollectionService {
     partialContent: string,
     contentType: string,
     user: JwtDTO,
-  ): Promise<CollectionDTO[]> {
+  ): Promise<CollectionDto[]> {
     console.log(partialContent);
     const data = await this.prismaService.collection.findMany({
       where: {
