@@ -8,10 +8,11 @@ import {
   IsOptional,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { CreateUserSchema } from './formSchema';
+import { CreateUserSchemaDTO } from './formSchema';
 import { UpdateProfileDTO } from '../profile/profile.dto';
+import { ProfileDTO } from '../profile/formSchema';
 
-export class CreateUserDTO extends CreateUserSchema {
+export class CreateUserDTO extends CreateUserSchemaDTO {
   @ApiProperty()
   @IsEmail()
   @IsNotEmpty()
@@ -24,7 +25,7 @@ export class CreateUserDTO extends CreateUserSchema {
   username: string;
 
   @IsOptional()
-  @ApiProperty({ required: false })
+  @ApiProperty()
   @Type(() => UpdateProfileDTO)
   profile?: UpdateProfileDTO;
 
@@ -33,7 +34,7 @@ export class CreateUserDTO extends CreateUserSchema {
   userActive: boolean;
 }
 
-export class UpdateUserProfileDTO extends PartialType(CreateUserDTO) {
+export class UpdateUserProfileDTO {
   @ApiProperty({ required: false })
   email: string;
 

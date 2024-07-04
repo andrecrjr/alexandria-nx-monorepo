@@ -1,31 +1,44 @@
 import {
   IsBoolean,
   IsEmail,
+  IsNotEmpty,
   IsOptional,
   IsString,
   MinLength,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { CreateProfileSchema } from '../profile/formSchema';
+import { CreateProfileSchemaDTO } from '../profile/formSchema';
 
-export class CreateUserSchema {
+export class CreateUserSchemaDTO {
   id?: number;
 
+  @IsNotEmpty()
   @IsEmail()
-  email?: string;
+  email: string;
 
   @IsString()
-  password?: string;
+  @IsNotEmpty()
+  password: string;
 
   @IsString()
+  @IsNotEmpty()
   @MinLength(5)
-  username?: string;
+  username: string;
 
   @IsOptional()
-  @Type(() => CreateProfileSchema)
-  profile?: CreateProfileSchema;
+  @Type(() => CreateProfileSchemaDTO)
+  profile?: CreateProfileSchemaDTO;
 
   @IsBoolean()
   @IsOptional()
+  userActive?: boolean = true;
+}
+
+export class UserDTO {
+  id?: number;
+  email?: string;
+  password?: string;
+  username?: string;
+  profile?: CreateProfileSchemaDTO;
   userActive?: boolean = true;
 }

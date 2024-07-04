@@ -10,10 +10,10 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ContentService } from './content.service';
-import { CreateContentDTO, UpdateContentDTO } from './content.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '../auth/auth.guard';
 import { IRequestJWT } from '../auth/jwt.dto';
+import { CreateContentDTO, UpdateContentDTO } from "@alexandria/shared-dto-api/content/content.dto"
 
 @Controller('content')
 @ApiTags('Content Creation')

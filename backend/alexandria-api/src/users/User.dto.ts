@@ -8,8 +8,9 @@ import {
   IsString,
   MinLength,
 } from 'class-validator';
-import { ProfileDTO, UpdateProfileDTO } from './profile/profile.dto';
+// import { ProfileDTO, UpdateProfileDTO } from './profile/profile.dto';
 import { Type } from 'class-transformer';
+import { UpdateProfileDTO } from './profile/profile.dto';
 
 export class UserDTO {
   id?: number;
@@ -23,8 +24,8 @@ export class UserDTO {
   @IsString()
   username?: string;
 
-  @Type(() => ProfileDTO)
-  profile?: ProfileDTO;
+  // @Type(() => ProfileDTO)
+  // profile?: ProfileDTO;
 
   @IsBoolean()
   @IsOptional()
@@ -47,17 +48,17 @@ export class CreateUserDTO {
   @IsNotEmpty()
   username: string;
 
-  @IsOptional()
-  @ApiProperty({ required: false })
-  @Type(() => UpdateProfileDTO)
-  profile?: UpdateProfileDTO;
+  // @IsOptional()
+  // @ApiProperty({ required: false })
+  // @Type(() => UpdateProfileDTO)
+  // profile?: UpdateProfileDTO;
 
   @IsBoolean()
   @IsOptional()
   userActive: boolean;
 }
 
-export class UpdateUserProfileDTO extends PartialType(CreateUserDTO) {
+export class UpdateUserProfileDTO extends PartialType(UserDTO) {
   @ApiProperty({ required: false })
   @IsEmail()
   @IsOptional()

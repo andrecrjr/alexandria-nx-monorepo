@@ -5,11 +5,12 @@ import {
   IsArray,
   ValidateNested,
   IsDate,
+  Min,
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { CreateUserSchema } from '../user/formSchema';
+import { CreateUserSchemaDTO } from '../user/formSchema';
 
-export class CreateProfileSchema {
+export class CreateProfileSchemaDTO {
   @IsInt()
   @IsOptional()
   id?: number;
@@ -24,6 +25,7 @@ export class CreateProfileSchema {
 
   @IsOptional()
   @IsInt()
+  @Min(1)
   age?: number;
 
   @IsOptional()
@@ -40,19 +42,21 @@ export class CreateProfileSchema {
 //   @IsOptional()
 //   collections?: CollectionDTO[];
 
-  @IsDate()
   @IsOptional()
-  createdAt?: Date;
-
-  @IsOptional()
-  @IsDate()
-  updatedAt?: Date;
-
-  @IsOptional()
-  @IsString()
-  userId?: string;
-
-  @IsOptional()
-  @Type(() => CreateUserSchema)
-  user?: CreateUserSchema;
+  @Type(() => CreateUserSchemaDTO)
+  user?: CreateUserSchemaDTO;
 }
+
+export class ProfileDTO {  
+  id?: number;
+  bio?: string;
+  location?: string;
+  age?: number;  
+  gender?: string;
+  interests?: string[];
+//   collections?: CollectionDTO[];
+  user?: CreateUserSchemaDTO;
+}
+
+
+export class UpdateProfileSchemaDTO extends CreateProfileSchemaDTO{}

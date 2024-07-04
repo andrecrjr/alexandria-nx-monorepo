@@ -2,9 +2,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateUserDTO } from '../user/users.dto';
-import { CreateProfileSchema } from './formSchema';
+import { CreateProfileSchemaDTO, ProfileDTO } from './formSchema';
 
-export class CreateProfileDTO extends CreateProfileSchema {
+export class CreateProfileDTO extends CreateProfileSchemaDTO {
   id?: number;
 
   @ApiProperty()
@@ -34,7 +34,7 @@ export class CreateProfileDTO extends CreateProfileSchema {
   user?: CreateUserDTO;
 }
 
-export class UpdateProfileDTO extends PartialType(CreateProfileDTO) {
+export class UpdateProfileDTO extends PartialType(ProfileDTO) {
   @ApiProperty({ required: false })
   bio?: string;
 

@@ -1,10 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { UpdateUserProfileDTO, UserDTO } from '../User.dto';
-import { ProfileDTO } from './profile.dto';
+// import { UpdateUserProfileDTO, UserDTO } from '../User.dto';
+
 import { JwtDTO } from '../../auth/jwt.dto';
 import {PrismaService} from "../../../prisma/prisma.service"
 import { exclude } from '../../utils';
+import { UserDTO } from '@alexandria/shared-dto-api/user/formSchema';
+import { ProfileDTO } from '@alexandria/shared-dto-api/profile/formSchema';
+import { UpdateUserProfileDTO } from '@alexandria/shared-dto-api/user/users.dto';
+
 
 @Injectable()
 export class ProfileService {
@@ -38,7 +42,7 @@ export class ProfileService {
     }));
   };
 
-  getProfile = async (user: JwtDTO): Promise<UserDTO | null> => {
+  getProfile = async (user: JwtDTO) => {
     return await this.prismaService.user.findUnique({
       where: {
         id: user.sub,

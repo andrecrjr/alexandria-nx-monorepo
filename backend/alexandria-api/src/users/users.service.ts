@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
-import { CreateUserDTO, UserDTO } from './User.dto';
+import { CreateUserSchemaDTO, UserDTO } from '@alexandria/shared-dto-api/user/formSchema';
 
 @Injectable()
 export class UsersService {
   private prisma = new PrismaClient();
-  private convertToPrisma(data: CreateUserDTO): Prisma.UserCreateInput {
+  private convertToPrisma(data: CreateUserSchemaDTO): Prisma.UserCreateInput {
     const { profile, ...rest } = data;
 
     return {
@@ -15,8 +15,9 @@ export class UsersService {
         create: profile || {},
       },
     };
+    
   }
-  async create({ password, ...data }: CreateUserDTO): Promise<UserDTO | null> {
+  async create({ password, ...data }: CreateUserSchemaDTO): Promise<UserDTO | null> {
     const prismaData = this.convertToPrisma({ ...data, password });
     const hashedPassword = await bcrypt.hash(password, 10);
 

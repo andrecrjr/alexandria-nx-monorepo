@@ -67,7 +67,7 @@ export class ProfileDTO {
 }
 
 export class UpdateProfileDTO extends PartialType(ProfileDTO) {
-  @ApiProperty({ required: false })
+  @ApiProperty({ required: true })
   @IsOptional()
   @IsString()
   bio?: string;
