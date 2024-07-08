@@ -1,7 +1,7 @@
 {
   "recommendations": [
     "nrwl.angular-console",
-    "esbenp.prettier-vscode",
+    "rvest.vs-code-prettier-eslint",
     "firsttris.vscode-jest-runner"
   ]
 }
