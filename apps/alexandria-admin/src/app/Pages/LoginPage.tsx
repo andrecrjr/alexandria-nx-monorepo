@@ -1,11 +1,10 @@
+import { Link, useNavigate } from 'react-router-dom';
 
-import { Link, useNavigate } from "react-router-dom";
-
-import { classValidatorResolver } from "@hookform/resolvers/class-validator";
-import { Button, Checkbox, Input, Label } from "@alexandria/shadcn-ui";
-import {useForm} from "react-hook-form"
-import {AuthCredentialsSchema} from '@alexandria/shared-dto-api/authentication/formSchema'
-import request from "../services";
+import { classValidatorResolver } from '@hookform/resolvers/class-validator';
+import { Button, Checkbox, Input, Label } from '@alexandria/shadcn-ui';
+import { useForm } from 'react-hook-form';
+import { AuthCredentialsSchema } from '@alexandria/shared-dto-api/authentication/formSchema';
+import request from '../services';
 
 const authResolver = classValidatorResolver(AuthCredentialsSchema);
 
@@ -13,25 +12,25 @@ export default function LoginPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<AuthCredentialsSchema>({
-    resolver: authResolver,
+    resolver: authResolver
   });
-  const nav = useNavigate();
+  const goTo = useNavigate();
   const _onSubmit = async ({ email, password }: AuthCredentialsSchema) => {
     try {
       const { data } = await request.post<{ accessToken: string }>(
-        "/auth/login",
+        '/auth/login',
         {
           email,
-          password,
+          password
         },
         {
-          withCredentials: true,
-        },
+          withCredentials: true
+        }
       );
-      localStorage.setItem("accessToken", data.accessToken);
-      nav("/create");
+      localStorage.setItem('accessToken', data.accessToken);
+      goTo('/create');
     } catch (error) {
       console.error(error);
     }
@@ -45,7 +44,7 @@ export default function LoginPage() {
             Sign in to your Nilo Account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
-            Or{" "}
+            Or{' '}
             <Link
               to="#"
               className="font-medium text-indigo-600 hover:text-indigo-500"
@@ -69,7 +68,7 @@ export default function LoginPage() {
               <Input
                 id="email"
                 type="email"
-                {...register("email")}
+                {...register('email')}
                 autoComplete="email"
                 required
                 className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-50 dark:placeholder-gray-400 sm:text-sm"
@@ -83,7 +82,7 @@ export default function LoginPage() {
               <Input
                 id="password"
                 type="password"
-                {...register("password")}
+                {...register('password')}
                 autoComplete="current-password"
                 required
                 className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-50 dark:placeholder-gray-400 sm:text-sm"

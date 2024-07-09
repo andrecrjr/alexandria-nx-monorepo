@@ -1,29 +1,14 @@
-import { Button } from '@alexandria/shadcn-ui';
-import { Route, Routes } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Layout from './Layout';
-import LoginPage from './Pages/LoginPage';
-import ListPage from './Pages/List';
-
+import AuthenticatedRoute from './molecules/Route/AuthenticatedRoute';
 
 export function App() {
-  
   return (
-      <Layout>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <LoginPage />
-          }
-        />
-        <Route
-          path="/admin"
-          element={
-            <ListPage />
-          }
-        />
-      </Routes>
-      </Layout>
+    <Layout>
+      <AuthenticatedRoute>
+        <Outlet />
+      </AuthenticatedRoute>
+    </Layout>
   );
 }
 
