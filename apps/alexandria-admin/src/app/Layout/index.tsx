@@ -1,6 +1,7 @@
 import React from 'react';
 import Aside from '../molecules/Nav';
 import { Header } from '../molecules/Header';
+import { Toaster } from '@alexandria/shadcn-ui/components/ui/toaster';
 
 type Props = {
   children?: React.ReactElement;
@@ -12,6 +13,7 @@ const Layout = ({ children }: Props) => {
       <Aside />
       <Header />
       {children}
+      <Toaster />
     </div>
   );
 };

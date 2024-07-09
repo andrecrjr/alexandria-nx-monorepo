@@ -27,6 +27,7 @@
     "class-validator": "^0.14.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "emblor": "^1.4.0",
     "fastify-cookie": "^5.7.0",
     "lucide-react": "^0.400.0",
     "passport-local": "^1.0.0",
