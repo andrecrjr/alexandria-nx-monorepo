@@ -15,7 +15,7 @@ import {
 } from '@alexandria/shadcn-ui';
 import { StatusTrackerDto } from '@alexandria/shared-dto-api/status-tracker/formSchema';
 import { useToast } from '@alexandria/shadcn-ui/components/ui/use-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 type Props = {
   data?: StatusTrackerDto[];
@@ -23,6 +23,11 @@ type Props = {
 
 export const ListTable = ({ data }: Props) => {
   const { toast } = useToast();
+  const goTo = useNavigate();
+  const loc = useLocation();
+  if (loc.pathname.includes('delete')) {
+    goTo('status-track');
+  }
   return (
     <div className="border shadow-sm rounded-lg">
       <div className="flex items-center justify-between border-b bg-muted/40 px-6 py-4">
@@ -37,14 +42,18 @@ export const ListTable = ({ data }: Props) => {
       <Table>
         <TableHeader>
           <TableRow>
+            <TableHead>id</TableHead>
             <TableHead>Status</TableHead>
-            <TableHead>Author</TableHead>
+            <TableHead>Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {data &&
             data?.map((item) => (
               <TableRow key={item.id}>
+                <TableCell>
+                  <div className="font-medium">{item.id}</div>
+                </TableCell>
                 <TableCell>
                   <div className="font-medium">
                     {JSON.stringify(item.statusHistory)}
@@ -59,15 +68,17 @@ export const ListTable = ({ data }: Props) => {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
-                      <DropdownMenuItem>
+                      <DropdownMenuItem className="cursor-pointer">
                         <Link to={`edit/${item.id}`}>Edit</Link>
                       </DropdownMenuItem>
                       <DropdownMenuItem
-                        onClick={async () => {
+                        onClick={() => {
                           toast({
                             title: `Delete Status Track: ${item.statusHistory}`
                           });
+                          goTo(`delete/${item.id}`);
                         }}
+                        className="cursor-pointer"
                       >
                         Delete
                       </DropdownMenuItem>

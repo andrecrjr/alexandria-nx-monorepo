@@ -1,8 +1,7 @@
-import { Outlet, RouteObject } from 'react-router-dom';
-import { CreatePage } from './Create';
+import { RouteObject } from 'react-router-dom';
+import { CreatePage, EditPage } from './CRUDPages';
 import { ListPage } from './List';
 import request from '../../services';
-import App from '../../app';
 
 export const StatusTrackRouter: RouteObject[] = [
   {
@@ -18,6 +17,19 @@ export const StatusTrackRouter: RouteObject[] = [
   },
   {
     path: 'status-track/edit/:id',
-    element: <CreatePage />
+    loader: async ({ params }) => {
+      return await request(`/status-tracker/${params.id}`);
+    },
+    element: <EditPage />
+  },
+  {
+    path: 'status-track/delete/:id',
+    loader: async ({ params }) => {
+      await request(`/status-tracker/${params.id}`, {
+        method: 'DELETE'
+      });
+      return await request(`/status-tracker/all`);
+    },
+    element: <ListPage />
   }
 ];

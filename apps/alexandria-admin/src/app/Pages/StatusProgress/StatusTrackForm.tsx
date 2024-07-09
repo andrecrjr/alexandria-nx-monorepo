@@ -6,24 +6,33 @@ import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import { useState } from 'react';
 import { Button, Label } from '@alexandria/shadcn-ui';
 import request from '../../services';
+import { useNavigate } from 'react-router-dom';
 const resolver = classValidatorResolver(CreateStatusTrackSchemaDTO);
-export const CreatePage = () => {
-  const [tags, setTags] = useState<Tag[]>([]);
+
+type Props = {
+  initialValues?: Tag[];
+  editId?: string;
+};
+
+export const StatusTrackForm = ({ initialValues, editId }: Props) => {
+  const [tags, setTags] = useState<Tag[]>(initialValues ? initialValues : []);
   const [activeTagIndex, setActiveTagIndex] = useState<number | null>(null);
   const { control, handleSubmit, setValue } = useForm<{ statusHistory: Tag[] }>(
     {
-      resolver: resolver
+      resolver: resolver,
+      defaultValues: { statusHistory: [{ id: '1212445', text: 'Etc' }] }
     }
   );
+  const goTo = useNavigate();
 
   async function onSubmit(data: { statusHistory: Tag[] }) {
     try {
-      await request(`status-tracker`, {
-        method: 'POST',
+      await request(`status-tracker${initialValues ? `/${editId}` : ''}`, {
+        method: initialValues ? 'PATCH' : 'POST',
         data: { statusHistory: data.statusHistory.map((item) => item.text) }
       });
       toast({
-        title: 'You submitted the following Status:',
+        title: `You ${editId ? 'updated' : 'submitted'} the following Status:`,
         description: (
           <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
             <code className="text-white">
@@ -35,6 +44,7 @@ export const CreatePage = () => {
           </pre>
         )
       });
+      goTo(`/status-track`);
     } catch (error) {
       toast({
         title: 'Problem to send data to the server',
