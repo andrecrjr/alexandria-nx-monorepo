@@ -28,7 +28,7 @@ export const routerRender = createBrowserRouter([
           }
         ]
       },
-      ...StatusTrackRouter
+      StatusTrackRouter
     ]
   }
 ]);

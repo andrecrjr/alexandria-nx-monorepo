@@ -47,6 +47,7 @@ CREATE TABLE "SeriesContent" (
     "createdById" INTEGER,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "synonyms" TEXT[],
 
     CONSTRAINT "SeriesContent_pkey" PRIMARY KEY ("id")
 );
@@ -89,8 +90,9 @@ CREATE TABLE "Content" (
     "imageUrl" TEXT,
     "createdById" INTEGER,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "numberPages" INTEGER NOT NULL,
+    "numberPages" INTEGER,
     "seriesId" INTEGER,
+    "synonyms" TEXT[],
 
     CONSTRAINT "Content_pkey" PRIMARY KEY ("id")
 );

@@ -7,10 +7,10 @@ const createContent = async () => {
   for (const item of contentWithSynonyms) {
     const items = {
       ...item,
-      synonyms: item.synonyms.map((item) => item.toLowerCase()),
+      synonyms: item.synonyms.map((item) => item.toLowerCase())
     };
     await prisma.content.create({
-      data: items,
+      data: items
     });
   }
   return true;
@@ -19,8 +19,8 @@ const createContent = async () => {
 async function main() {
   const statusHistory = await prisma.statusTrackUser.create({
     data: {
-      statusHistory: ['Reading', 'Completed', 'Paused', 'Abandoned'],
-    },
+      statusHistory: ['Reading', 'Completed', 'Paused', 'Abandoned']
+    }
   });
 
   await prisma.contentType.createMany({
@@ -28,20 +28,20 @@ async function main() {
       {
         title: 'Manga',
         description: 'Type of content for books',
-        statusTrackerId: statusHistory.id,
+        statusTrackerId: statusHistory.id
       },
       {
         title: 'Book',
         description: 'Type of content for manga',
-        statusTrackerId: statusHistory.id,
+        statusTrackerId: statusHistory.id
       },
       {
         title: 'Anime',
         description: 'Type of content for anime',
-        statusTrackerId: statusHistory.id,
-      },
+        statusTrackerId: statusHistory.id
+      }
       // Add more content types as needed
-    ],
+    ]
   });
 
   // Seed data for User
@@ -58,11 +58,11 @@ async function main() {
           location: 'Example City',
           age: 30,
           gender: 'Male',
-          interests: ['Coding', 'Running', 'Music'],
-        },
-      },
+          interests: ['Coding', 'Running', 'Music']
+        }
+      }
     },
-    include: { profile: true },
+    include: { profile: true }
   });
   console.log('User created');
   // Seed data for Genre
@@ -70,9 +70,9 @@ async function main() {
     data: [
       { name: 'Fantasy' },
       { name: 'Adventure' },
-      { name: 'Romance' },
+      { name: 'Romance' }
       // Add more genres as needed
-    ],
+    ]
   });
   console.log('genre created');
 
