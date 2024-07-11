@@ -12,26 +12,28 @@ import { Link } from 'react-router-dom';
 
 interface ListTableDataProps<T> {
   data: T[];
-  columns: { key: string; label: string }[];
+  columns: { key: string | object; label: string }[];
   actions?: (item: T) => JSX.Element;
   detailLinkKey?: string;
   listOptions: { name: string };
   detailLinkPath?: (item: T) => string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const ListTable: React.FC<ListTableDataProps<any>> = ({
+const ListTable = <T,>({
   data,
   columns,
   actions,
   detailLinkKey,
   detailLinkPath,
+  listOptions,
   ...rest
-}) => {
+}: ListTableDataProps<T>) => {
   return (
     <div className="border shadow-sm rounded-lg">
       <div className="flex items-center justify-between border-b bg-muted/40 px-6 py-4">
-        <h1 className="text-lg font-semibold">List Title</h1>
+        <h1 className="text-lg font-semibold">
+          {listOptions.name}'s Management
+        </h1>
         <Link to="create">
           <Button>
             <PlusIcon className="h-4 w-4 mr-2" />
@@ -43,32 +45,32 @@ const ListTable: React.FC<ListTableDataProps<any>> = ({
         <TableHeader>
           <TableRow>
             {columns.map((column) => (
-              <TableHead key={column.key}>{column.label}</TableHead>
+              <TableHead key={column.key as string}>{column.label}</TableHead>
             ))}
             {actions && <TableHead>Actions</TableHead>}
           </TableRow>
         </TableHeader>
         <TableBody>
           {data &&
-            data.map((item) => (
-              <TableRow key={item[detailLinkKey || 'id']}>
-                {' '}
+            data.map((item, index) => (
+              <TableRow key={(item['id' as keyof T] as string) || index}>
                 {columns.map((column) => (
-                  <TableCell key={column.key}>
-                    {typeof item[column.key] === 'object' ? (
-                      <code>{JSON.stringify(item[column.key], null, 2)}</code> // Handle object data
+                  <TableCell key={column.key as string}>
+                    {typeof item[column.key as keyof T] === 'object' ? (
+                      <code>
+                        {JSON.stringify(item[column.key as keyof T], null, 2)}
+                      </code> // Handle object data
                     ) : (
-                      item[column.key]
+                      (item[column.key as keyof T] as string)
                     )}
                   </TableCell>
                 ))}
                 {actions && <TableCell>{actions(item)}</TableCell>}
-                {detailLinkKey && (
+                {detailLinkKey && detailLinkPath && (
                   <TableCell>
                     <Link
-                      to={`${
-                        detailLinkPath ? detailLinkPath(item) : detailLinkKey
-                      }/${item[detailLinkKey]}`}
+                      to={`
+                        ${detailLinkPath(item)}`}
                     >
                       View Details
                     </Link>

@@ -2,16 +2,14 @@ import {
   Button,
   DropdownMenu,
   DropdownMenuItem,
-  MoveHorizontalIcon
+  MoveHorizontalIcon,
+  DropdownMenuTrigger,
+  DropdownMenuContent
 } from '@alexandria/shadcn-ui';
 import { toast } from '@alexandria/shadcn-ui/components/ui/use-toast';
-import {
-  DropdownMenuContent,
-  DropdownMenuTrigger
-} from '@radix-ui/react-dropdown-menu';
 import { Link, useNavigate } from 'react-router-dom';
 
-export const CustomActions = (item: any) => {
+export const CustomActions = <T,>(item: T) => {
   const goTo = useNavigate();
   return (
     <DropdownMenu>
@@ -23,14 +21,14 @@ export const CustomActions = (item: any) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem className="cursor-pointer">
-          <Link to={`edit/${item.id}`}>Edit</Link>
+          <Link to={`edit/${item['id' as keyof T]}`}>Edit</Link>
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
             toast({
-              title: `Delete Status Track: ${item.statusHistory}`
+              title: `Delete Status Track: ${item['statusHistory' as keyof T]}`
             });
-            goTo(`delete/${item.id}`);
+            goTo(`delete/${item['statusHistory' as keyof T]}`);
           }}
           className="cursor-pointer"
         >

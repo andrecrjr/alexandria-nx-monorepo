@@ -4,7 +4,7 @@ import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import { Button, Checkbox, Input, Label } from '@alexandria/shadcn-ui';
 import { useForm } from 'react-hook-form';
 import { AuthCredentialsSchema } from '@alexandria/shared-dto-api/authentication/formSchema';
-import request from '../services';
+import request from '../../services';
 
 const authResolver = classValidatorResolver(AuthCredentialsSchema);
 

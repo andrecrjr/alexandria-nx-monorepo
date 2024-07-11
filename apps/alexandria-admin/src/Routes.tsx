@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
-import AuthenticatedRoute from './app/molecules/Route/AuthenticatedRoute';
+// import AuthenticatedRoute from './app/molecules/Route/AuthenticatedRoute';
 import ListPage from './app/Pages/List';
-import LoginPage from './app/Pages/LoginPage';
+import LoginPage from './app/Pages/Auth/LoginPage';
 import App from './app/app';
 import { StatusTrackRouter } from './app/Pages/StatusProgress';
 

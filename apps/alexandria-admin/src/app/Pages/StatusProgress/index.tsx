@@ -1,5 +1,5 @@
 import { RouteObject } from 'react-router-dom';
-import { CreatePage, EditPage } from './CRUDPages';
+import { CreatePage, EditPage } from './createAndUpdatedPages';
 import { ListPage } from './List';
 import request from '../../services';
 
