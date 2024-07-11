@@ -1,17 +1,17 @@
-import axios from "axios";
+import axios from 'axios';
 
 const request = axios.create({
   baseURL: `${import.meta.env.VITE_API_ENDPOINT}`,
-  withCredentials: true,
+  withCredentials: true
 });
 
 const refreshAccessToken = async () => {
   try {
-    const data = await request.post("/auth/refresh");
-    localStorage.setItem("accessToken", data.data.accessToken);
+    const data = await request.post('/auth/refresh');
+    localStorage.setItem('accessToken', data.data.accessToken);
     return data;
   } catch (error) {
-    console.error("Erro ao atualizar o token:", error);
+    console.error('Erro ao atualizar o token:', error);
     return null;
   }
 };
@@ -30,19 +30,16 @@ request.interceptors.response.use(
       try {
         const newAccessToken = await refreshAccessToken();
         if (newAccessToken) {
-          // Update authorization header with new token
-          console.log(newAccessToken.data);
           originalRequest.headers.Authorization = `Bearer ${newAccessToken.data.accessToken}`;
           return request(originalRequest);
         }
       } catch (refreshError) {
-        console.error("Error refreshing access token:", refreshError);
+        console.error('Error refreshing access token:', refreshError);
       }
     }
 
-    // Handle other error scenarios or return the original error
     return Promise.reject(error);
-  },
+  }
 );
 
 export default request;

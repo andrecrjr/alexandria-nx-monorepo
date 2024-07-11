@@ -23,16 +23,6 @@ export const StatusTrackRouter: RouteObject = {
         return await request(`/status-tracker/${params.id}`);
       },
       element: <EditPage />
-    },
-    {
-      path: 'delete/:id',
-      loader: async ({ params }) => {
-        await request(`/status-tracker/${params.id}`, {
-          method: 'DELETE'
-        });
-        return await request(`/status-tracker/all`);
-      },
-      element: <ListPage />
     }
   ]
 };
