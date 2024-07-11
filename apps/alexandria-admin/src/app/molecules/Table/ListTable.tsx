@@ -9,11 +9,16 @@ import {
   Button
 } from '@alexandria/shadcn-ui';
 import { Link } from 'react-router-dom';
+import {
+  ActionsButtonAdmin,
+  CustomActionsProps
+} from '../../types/ActionsList';
+import { CustomActions } from './ControllerAction';
 
 interface ListTableDataProps<T> {
   data: T[];
   columns: { key: string | object; label: string }[];
-  actions?: (item: T) => JSX.Element;
+  controllerActions?: ActionsButtonAdmin<T>;
   detailLinkKey?: string;
   listOptions: { name: string };
   detailLinkPath?: (item: T) => string;
@@ -22,7 +27,7 @@ interface ListTableDataProps<T> {
 const ListTable = <T,>({
   data,
   columns,
-  actions,
+  controllerActions,
   detailLinkKey,
   detailLinkPath,
   listOptions,
@@ -47,7 +52,7 @@ const ListTable = <T,>({
             {columns.map((column) => (
               <TableHead key={column.key as string}>{column.label}</TableHead>
             ))}
-            {actions && <TableHead>Actions</TableHead>}
+            {!!controllerActions && <TableHead>Actions</TableHead>}
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -65,7 +70,11 @@ const ListTable = <T,>({
                     )}
                   </TableCell>
                 ))}
-                {actions && <TableCell>{actions(item)}</TableCell>}
+                {!!controllerActions && (
+                  <TableCell>
+                    {<CustomActions actions={controllerActions} item={item} />}
+                  </TableCell>
+                )}
                 {detailLinkKey && detailLinkPath && (
                   <TableCell>
                     <Link

@@ -4,7 +4,7 @@ import { ListPage } from './List';
 import request from '../../services';
 
 export const StatusTrackRouter: RouteObject = {
-  path: 'status-track',
+  path: 'status-tracker',
   children: [
     {
       path: '',

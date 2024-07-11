@@ -14,6 +14,8 @@ type Props = {
   editId?: string;
 };
 
+const apiEndpoint = 'status-tracker';
+
 export const StatusTrackForm = ({ initialValues, editId }: Props) => {
   const [tags, setTags] = useState<Tag[]>(initialValues ? initialValues : []);
   const [activeTagIndex, setActiveTagIndex] = useState<number | null>(null);
@@ -27,7 +29,7 @@ export const StatusTrackForm = ({ initialValues, editId }: Props) => {
 
   async function onSubmit(data: { statusHistory: Tag[] }) {
     try {
-      await request(`status-tracker${initialValues ? `/${editId}` : ''}`, {
+      await request(`${apiEndpoint}${initialValues ? `/${editId}` : ''}`, {
         method: initialValues ? 'PATCH' : 'POST',
         data: { statusHistory: data.statusHistory.map((item) => item.text) }
       });
@@ -44,7 +46,7 @@ export const StatusTrackForm = ({ initialValues, editId }: Props) => {
           </pre>
         )
       });
-      goTo(`/status-track`);
+      goTo(`/${apiEndpoint}`);
     } catch (error) {
       toast({
         title: 'Problem to send data to the server',

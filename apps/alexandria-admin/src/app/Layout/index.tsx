@@ -1,5 +1,5 @@
 import React from 'react';
-import Aside from '../molecules/Nav';
+import Aside from '../molecules/Header/Nav';
 import { Header } from '../molecules/Header';
 import { Toaster } from '@alexandria/shadcn-ui/components/ui/toaster';
 
