@@ -30,7 +30,7 @@ export default function LoginPage() {
         }
       );
       localStorage.setItem('accessToken', data.accessToken);
-      goTo('/create');
+      goTo('/');
     } catch (error) {
       console.error(error);
     }

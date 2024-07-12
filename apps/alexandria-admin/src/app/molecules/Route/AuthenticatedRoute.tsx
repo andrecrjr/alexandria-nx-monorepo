@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 export type Props = {
   children: ReactElement;
@@ -7,9 +7,7 @@ export type Props = {
 
 const AuthenticatedRoute = ({ children }: Props): React.ReactElement => {
   const accessToken = localStorage.getItem('accessToken');
-  const { pathname } = useLocation();
 
-  if (pathname === '/login') return <Navigate to="/" />;
   return accessToken ? children : <Navigate to="/login" />;
 };
 

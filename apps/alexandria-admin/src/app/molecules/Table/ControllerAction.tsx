@@ -19,7 +19,7 @@ export const CustomActions = <T,>({ item, actions }: CustomActionsProps<T>) => {
           <span className="sr-only">Actions</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="w-24">
         {actions.map((action, index) => (
           <DropdownMenuItem
             key={index}

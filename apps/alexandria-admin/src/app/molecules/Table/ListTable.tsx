@@ -9,10 +9,7 @@ import {
   Button
 } from '@alexandria/shadcn-ui';
 import { Link } from 'react-router-dom';
-import {
-  ActionsButtonAdmin,
-  CustomActionsProps
-} from '../../types/ActionsList';
+import { ActionsButtonAdmin } from '../../types/ActionsList';
 import { CustomActions } from './ControllerAction';
 
 interface ListTableDataProps<T> {

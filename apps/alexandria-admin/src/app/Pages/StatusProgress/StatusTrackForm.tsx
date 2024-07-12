@@ -22,7 +22,7 @@ export const StatusTrackForm = ({ initialValues, editId }: Props) => {
   const { control, handleSubmit, setValue } = useForm<{ statusHistory: Tag[] }>(
     {
       resolver: resolver,
-      defaultValues: { statusHistory: [{ id: '1212445', text: 'Etc' }] }
+      defaultValues: { statusHistory: initialValues || [] }
     }
   );
   const goTo = useNavigate();
@@ -55,8 +55,11 @@ export const StatusTrackForm = ({ initialValues, editId }: Props) => {
     }
   }
   return (
-    <div className="preview flex min-h-[350px] max-w-[35%] justify-center mx-auto p-10 mt-16 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative rounded-md">
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <div className="preview flex  justify-center mx-auto p-10 mt-16 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative rounded-md">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="min-w-[600px] min-h-[350px]"
+      >
         <Label>Add Status to Track:</Label>
         <Controller
           name="statusHistory"
