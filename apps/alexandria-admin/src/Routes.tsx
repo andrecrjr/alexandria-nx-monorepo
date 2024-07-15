@@ -4,6 +4,7 @@ import ListPage from './app/Pages/List';
 import LoginPage from './app/Pages/Auth/LoginPage';
 import { ProtectedApp } from './app/app';
 import { StatusTrackRouter } from './app/Pages/StatusProgress';
+import { GenreContent } from './app/Pages/Genre';
 
 export const routerRender = createBrowserRouter([
   {
@@ -18,7 +19,8 @@ export const routerRender = createBrowserRouter([
         path: '',
         element: <ListPage />
       },
-      StatusTrackRouter
+      StatusTrackRouter,
+      GenreContent
     ]
   }
 ]);
