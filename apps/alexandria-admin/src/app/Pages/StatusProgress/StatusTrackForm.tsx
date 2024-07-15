@@ -55,11 +55,11 @@ export const StatusTrackForm = ({ initialValues, editId }: Props) => {
     }
   }
   return (
-    <div className="preview flex  justify-center mx-auto p-10 mt-16 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative rounded-md">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="min-w-[600px] min-h-[350px]"
-      >
+    <div
+      className="preview flex justify-center w- mx-auto mt-16 ring-offset-background 
+    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative rounded-md"
+    >
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Label>Add Status to Track:</Label>
         <Controller
           name="statusHistory"
@@ -70,8 +70,9 @@ export const StatusTrackForm = ({ initialValues, editId }: Props) => {
               placeholder="Enter a topic"
               tags={tags}
               styleClasses={{
-                input: 'border border-gray-300 p-2',
-                inlineTagsContainer: 'bg-gray-100 p-2 rounded',
+                input: 'border border-gray-300 p-2 w-[300px]',
+                inlineTagsContainer:
+                  'bg-gray-100 p-2 rounded sm:max-w-[750px] flex-wrap',
                 tagPopover: {
                   popoverContent: 'bg-white shadow-lg',
                   popoverTrigger: 'text-blue-500 hover:text-blue-600'

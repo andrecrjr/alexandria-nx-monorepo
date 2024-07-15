@@ -19,7 +19,7 @@ export const CustomActions = <T,>({ item, actions }: CustomActionsProps<T>) => {
           <span className="sr-only">Actions</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-24">
+      <DropdownMenuContent>
         {actions.map((action, index) => (
           <DropdownMenuItem
             key={index}
@@ -32,10 +32,13 @@ export const CustomActions = <T,>({ item, actions }: CustomActionsProps<T>) => {
                   }
                 : undefined
             }
-            className="cursor-pointer"
+            className="w-full items-center justify-center text-center cursor-pointer"
           >
             {action.type === 'link' ? (
-              <Link to={action.linkPath ? action.linkPath(item) : ''}>
+              <Link
+                className="w-full"
+                to={action.linkPath ? action.linkPath(item) : ''}
+              >
                 {action.label}
               </Link>
             ) : (

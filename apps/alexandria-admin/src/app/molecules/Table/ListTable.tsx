@@ -1,5 +1,4 @@
 import { PlusIcon, TableHead } from '@alexandria/shadcn-ui';
-import React from 'react';
 import {
   Table,
   TableHeader,
@@ -39,7 +38,7 @@ const ListTable = <T,>({
         <Link to="create">
           <Button>
             <PlusIcon className="h-4 w-4 mr-2" />
-            Add New
+            Add New {listOptions.name}
           </Button>
         </Link>
       </div>
@@ -57,7 +56,10 @@ const ListTable = <T,>({
             data.map((item, index) => (
               <TableRow key={(item['id' as keyof T] as string) || index}>
                 {columns.map((column) => (
-                  <TableCell key={column.key as string}>
+                  <TableCell
+                    key={column.key as string}
+                    className="max-w-[400px]"
+                  >
                     {typeof item[column.key as keyof T] === 'object' ? (
                       <code>
                         {JSON.stringify(item[column.key as keyof T], null, 2)}
