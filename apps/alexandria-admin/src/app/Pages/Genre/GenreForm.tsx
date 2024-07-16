@@ -15,7 +15,11 @@ type Props = {
 const apiEndpoint = 'genre-content';
 
 export const GenreForm = ({ initialValues, editId }: Props) => {
-  const { handleSubmit, register } = useForm<{ name: string }>({
+  const {
+    handleSubmit,
+    register,
+    formState: { errors }
+  } = useForm<{ name: string }>({
     resolver: resolver,
     defaultValues: { ...initialValues }
   });
@@ -51,8 +55,11 @@ export const GenreForm = ({ initialValues, editId }: Props) => {
     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative rounded-md"
     >
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Label>{editId ? 'Update' : 'Submit new'} Genre:</Label>
+        <Label>{editId ? 'Update' : 'Submit new'} Genre *:</Label>
         <Input {...register('name')} />
+        {errors?.name ? (
+          <p className="text-red-500">{errors.name.message}</p>
+        ) : null}
         <Button type="submit">Save</Button>
       </form>
     </div>

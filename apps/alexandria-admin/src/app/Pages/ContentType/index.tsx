@@ -3,14 +3,14 @@ import { CreatePage, EditPage } from './createAndUpdatedPages';
 import { ListPage } from './List';
 import request from '../../services';
 
-export const StatusTrackRouter: RouteObject = {
-  path: 'status-tracker',
+export const ContentTypeRouter: RouteObject = {
+  path: 'contenttype',
   children: [
     {
       path: '',
       element: <ListPage />,
       loader: async () => {
-        return await request(`/status-tracker`);
+        return await request(`/contenttype`);
       }
     },
     {
@@ -20,7 +20,7 @@ export const StatusTrackRouter: RouteObject = {
     {
       path: 'edit/:id',
       loader: async ({ params }) => {
-        return await request(`/status-tracker/${params.id}`);
+        return await request(`/contenttype/${params.id}`);
       },
       element: <EditPage />
     }

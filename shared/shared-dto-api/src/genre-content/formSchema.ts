@@ -3,7 +3,8 @@ import {
   IsInt,
   IsNotEmpty,
   IsOptional,
-  IsString
+  IsString,
+  MinLength
 } from 'class-validator';
 import { ContentDTO } from '../content/formSchema';
 export class GenreContentDTO {
@@ -31,5 +32,6 @@ export class CreateGenreContentDtoSchema {
 
   @IsString()
   @IsNotEmpty()
+  @MinLength(2)
   name: string;
 }

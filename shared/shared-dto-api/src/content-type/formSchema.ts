@@ -4,9 +4,9 @@ import {
   IsOptional,
   IsString,
   MinLength,
-  ValidateNested,
+  ValidateNested
 } from 'class-validator';
-import { Type } from 'class-transformer';
+// import { Type } from 'class-transformer';
 import { ContentIdDTO } from '../content/content.dto';
 
 export class ContentTypeDTO {
@@ -14,7 +14,7 @@ export class ContentTypeDTO {
   title: string;
   description: string;
   contents?: ContentIdDTO[];
-//   statusTracker?: StatusTrackIdDTO;
+  //   statusTracker?: StatusTrackIdDTO;
   statusTrackerId: number;
 }
 
@@ -28,21 +28,19 @@ export class CreateContentTypeSchemaDTO extends ContentTypeDTO {
   title: string;
 
   @IsString()
-  @IsOptional()
   @MinLength(10)
   description: string;
 
   @ValidateNested({ each: true })
-  @Type(() => ContentIdDTO)
+  // @Type(() => ContentIdDTO)
   contents: ContentIdDTO[];
 
-//   @ApiProperty({ required: true })
-//   @Type(() => StatusTrackIdDTO)
-//   statusTracker: StatusTrackIdDTO;
+  //   @ApiProperty({ required: true })
+  //   @Type(() => StatusTrackIdDTO)
+  //   statusTracker: StatusTrackIdDTO;
 
   statusTrackerId: number;
 }
-
 
 export class ContentTypeIDDTO {
   @IsInt()

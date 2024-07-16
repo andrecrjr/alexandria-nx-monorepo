@@ -85,4 +85,14 @@ export class ContenttypeService {
 
     return results;
   }
+  async getOne(id: string): Promise<ContentTypeDTO> {
+    const result = await this.prismaService['contentType'].findFirstOrThrow({
+      where: { id: parseInt(id) },
+      include: {
+        statusTracker: true
+      }
+    });
+
+    return result;
+  }
 }

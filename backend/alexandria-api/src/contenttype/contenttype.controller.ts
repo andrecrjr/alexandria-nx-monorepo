@@ -27,8 +27,13 @@ export class ContenttypeController {
   }
 
   @Get()
-  get() {
+  getAll() {
     return this.contentTypeService.getAll();
+  }
+
+  @Get(':id')
+  get(@Body() data: UpdateContentTypeDTO, @Param('id') id: string) {
+    return this.contentTypeService.getOne(id);
   }
 
   @Patch(':id')
