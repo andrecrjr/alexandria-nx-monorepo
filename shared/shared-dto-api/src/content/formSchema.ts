@@ -1,10 +1,16 @@
-import { Type } from "class-transformer";
-import { IsDate, IsInt, IsOptional, IsString, ValidateNested } from "class-validator";
-import { UserDTO } from "../user/formSchema";
-import { GenreIdDTO } from "../genre-content/genre-content.dto";
-import { AuthorIdDTO } from "../authors/formSchema";
-import { ContentTypeDTO } from "../content-type/formSchema";
-import { CollectionDto } from "../collections/formSchema";
+// import { Type } from "class-transformer";
+import {
+  IsDate,
+  IsInt,
+  IsOptional,
+  IsString,
+  ValidateNested
+} from 'class-validator';
+import { UserDTO } from '../user/formSchema';
+import { GenreIdDTO } from '../genre-content/genre-content.dto';
+import { AuthorIdDTO } from '../authors/formSchema';
+import { ContentTypeDTO } from '../content-type/formSchema';
+import { CollectionDto } from '../collections/formSchema';
 
 export class ContentDTO {
   id: number;
@@ -27,7 +33,6 @@ export class ContentDTO {
 
   genres?: GenreIdDTO[];
 }
-
 
 export class CreateContentSchemaDTO {
   @IsInt()
@@ -52,11 +57,11 @@ export class CreateContentSchemaDTO {
 
   @IsOptional()
   @ValidateNested({ each: true })
-  @Type(() => ContentTypeDTO)
+  // @Type(() => ContentTypeDTO)
   contentType?: ContentTypeDTO;
 
   @ValidateNested({ each: true })
-  @Type(() => UserDTO)
+  // @Type(() => UserDTO)
   createdBy?: UserDTO;
 
   @IsOptional()
@@ -77,11 +82,11 @@ export class CreateContentSchemaDTO {
 
   @IsOptional()
   @ValidateNested({ each: true })
-  @Type(() => CollectionDto)
+  // @Type(() => CollectionDto)
   collections?: CollectionDto[];
 
   @IsOptional()
-  @Type(() => AuthorIdDTO)
+  // @Type(() => AuthorIdDTO)
   authors?: AuthorIdDTO[];
 
   @IsOptional()

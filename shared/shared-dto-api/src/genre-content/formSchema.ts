@@ -1,9 +1,11 @@
-import { OmitType } from '@nestjs/mapped-types';
-import { Type } from 'class-transformer';
-import { IsDate, IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import {
+  IsDate,
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+  IsString
+} from 'class-validator';
 import { ContentDTO } from '../content/formSchema';
-import { ApiProperty } from '@nestjs/swagger';
-
 export class GenreContentDTO {
   @IsInt()
   id: number;
@@ -17,19 +19,11 @@ export class GenreContentDTO {
   @IsDate()
   updatedAt: Date;
 
-//   @Type(() => SeriesContentDTOForGenre)
-//   series?: SeriesContentDTOForGenre[];
-
-  @Type(() => ContentDTO)
+  //   series?: SeriesContentDTOForGenre[];
   contents?: ContentDTO[];
 
-  @Type(() => ContentDTO)
   genres?: ContentDTO[];
 }
-
-// export class GenreContentForSeriesTrackerDTO extends OmitType(GenreContentDTO, [
-//   'series',
-// ]) {}
 
 export class CreateGenreContentDtoSchema {
   @IsOptional()
@@ -39,4 +33,3 @@ export class CreateGenreContentDtoSchema {
   @IsNotEmpty()
   name: string;
 }
-

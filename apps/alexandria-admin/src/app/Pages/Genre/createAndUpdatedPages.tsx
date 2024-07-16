@@ -1,19 +1,14 @@
-import { StatusTrackerDto } from '@alexandria/shared-dto-api/status-tracker/formSchema';
-import { StatusTrackForm } from './StatusTrackForm';
+import { GenreForm } from './GenreForm';
 import { useLoaderData, useParams } from 'react-router-dom';
+import { GenreContentDTO } from '@alexandria/shared-dto-api/genre-content/formSchema';
 
 export const CreatePage = () => {
-  return <StatusTrackForm />;
+  return <GenreForm />;
 };
 
 export const EditPage = () => {
   const { id } = useParams();
-  const { data } = useLoaderData() as { data: StatusTrackerDto };
+  const { data } = useLoaderData() as { data: GenreContentDTO };
 
-  const valueUpdated = data.statusHistory.map((item) => ({
-    id: `${Math.random() * 100}`,
-    text: item
-  }));
-
-  return <StatusTrackForm initialValues={valueUpdated} editId={id} />;
+  return <GenreForm initialValues={data} editId={id} />;
 };
