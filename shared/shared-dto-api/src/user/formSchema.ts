@@ -4,9 +4,9 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
-  MinLength,
+  MinLength
 } from 'class-validator';
-import { Type } from 'class-transformer';
+// import { Type } from 'class-transformer';
 import { CreateProfileSchemaDTO } from '../profile/formSchema';
 
 export class CreateUserSchemaDTO {
@@ -26,7 +26,7 @@ export class CreateUserSchemaDTO {
   username: string;
 
   @IsOptional()
-  @Type(() => CreateProfileSchemaDTO)
+  // @Type(() => CreateProfileSchemaDTO)
   profile?: CreateProfileSchemaDTO;
 
   @IsBoolean()

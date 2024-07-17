@@ -1,4 +1,4 @@
-import { Type } from 'class-transformer';
+// import { Type } from 'class-transformer';
 import {
   IsOptional,
   IsString,
@@ -7,7 +7,7 @@ import {
   IsJSON,
   IsUrl,
   IsInt,
-  ValidateNested,
+  ValidateNested
 } from 'class-validator';
 import { CreateUserSchemaDTO } from '../user/formSchema';
 
@@ -77,7 +77,7 @@ export class AuthorContentDTO {
 
   @IsOptional()
   @ValidateNested({ each: true })
-  @Type(() => CreateUserSchemaDTO)
+  // @Type(() => CreateUserSchemaDTO)
   createdBy?: CreateUserSchemaDTO;
 }
 
@@ -85,4 +85,3 @@ export class AuthorIdDTO {
   @IsInt()
   id: number;
 }
-
