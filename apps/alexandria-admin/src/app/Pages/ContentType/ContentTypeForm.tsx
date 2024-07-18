@@ -63,10 +63,6 @@ export const ContentTypeForm = ({ initialValues, editId }: Props) => {
     >
       <h2>{editId ? 'Update' : 'Submit new'} Content Type *:</h2>
       <form className="grid gap-3 mt-6" onSubmit={handleSubmit(onSubmit)}>
-        {/* <Input {...register('title')} />
-        {errors?.title ? (
-          <p className="text-red-500">{errors.title.message}</p>
-        ) : null} */}
         <GenericInput
           register={register('title')}
           errors={errors['title']}
