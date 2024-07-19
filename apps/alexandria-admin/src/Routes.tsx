@@ -6,12 +6,11 @@ import { ProtectedApp } from './app/app';
 import { StatusTrackRouter } from './app/Pages/StatusProgress';
 import { GenreContent } from './app/Pages/Genre';
 import { ContentTypeRouter } from './app/Pages/ContentType';
+import { RouteMenuArray } from './types';
+import { AuthRoutes } from './app/Pages/Auth';
 
-export const routerRender = createBrowserRouter([
-  {
-    path: '/login',
-    element: <LoginPage />
-  },
+export const appRoutes: RouteMenuArray[] = [
+  AuthRoutes,
   {
     path: '/',
     element: <ProtectedApp />,
@@ -25,4 +24,6 @@ export const routerRender = createBrowserRouter([
       ContentTypeRouter
     ]
   }
-]);
+];
+
+export const routerRender = createBrowserRouter(appRoutes);

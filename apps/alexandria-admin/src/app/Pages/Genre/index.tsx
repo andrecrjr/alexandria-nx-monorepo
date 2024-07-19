@@ -1,10 +1,13 @@
-import { RouteObject } from 'react-router-dom';
 import { CreatePage, EditPage } from './createAndUpdatedPages';
 import { ListPage } from './List';
 import request from '../../services';
+import { RouteObjectMenu } from 'apps/alexandria-admin/src/types';
+import { BookIcon } from '@alexandria/shadcn-ui';
 
-export const GenreContent: RouteObject = {
+export const GenreContent: RouteObjectMenu = {
   path: 'genre-content',
+  menuName: 'Genre Content',
+  componentIcon: BookIcon,
   children: [
     {
       path: '',

@@ -1,10 +1,13 @@
-import { RouteObject } from 'react-router-dom';
 import { CreatePage, EditPage } from './createAndUpdatedPages';
 import { ListPage } from './List';
 import request from '../../services';
+import { RouteObjectMenu } from 'apps/alexandria-admin/src/types';
+import { BookOpenCheckIcon } from 'lucide-react';
 
-export const StatusTrackRouter: RouteObject = {
+export const StatusTrackRouter: RouteObjectMenu = {
   path: 'status-tracker',
+  menuName: 'Status Tracking',
+  componentIcon: BookOpenCheckIcon,
   children: [
     {
       path: '',
