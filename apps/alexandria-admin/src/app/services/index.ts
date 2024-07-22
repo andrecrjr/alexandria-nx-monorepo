@@ -29,6 +29,7 @@ request.interceptors.response.use(
       originalRequest._retry = true;
       try {
         const newAccessToken = await refreshAccessToken();
+        console.log(newAccessToken);
         if (newAccessToken) {
           originalRequest.headers.Authorization = `Bearer ${newAccessToken.data.accessToken}`;
           return request(originalRequest);

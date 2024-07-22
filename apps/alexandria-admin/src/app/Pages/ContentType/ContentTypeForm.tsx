@@ -26,16 +26,14 @@ export const ContentTypeForm = ({ initialValues, editId }: Props) => {
   });
   const goTo = useNavigate();
 
-  console.log(initialValues);
   async function onSubmit(data: CreateContentTypeSchemaDTO) {
     try {
-      console.log(data);
       await request(`${apiEndpoint}${initialValues ? `/${editId}` : ''}`, {
         method: initialValues ? 'PATCH' : 'POST',
         data: {
           title: data.title,
           description: data.description,
-          statusTrackerId: data.statusTrackerId
+          statusTracker: data.statusTrackerId || 1
         }
       });
       toast({
