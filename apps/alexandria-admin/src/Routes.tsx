@@ -8,6 +8,7 @@ import { GenreContent } from './app/Pages/Genre';
 import { ContentTypeRouter } from './app/Pages/ContentType';
 import { RouteMenuArray } from './types';
 import { AuthRoutes } from './app/Pages/Auth';
+import { ContentRouter } from './app/Pages/Content';
 
 export const appRoutes: RouteMenuArray[] = [
   AuthRoutes,
@@ -21,7 +22,8 @@ export const appRoutes: RouteMenuArray[] = [
       },
       StatusTrackRouter,
       GenreContent,
-      ContentTypeRouter
+      ContentTypeRouter,
+      ContentRouter
     ]
   }
 ];
