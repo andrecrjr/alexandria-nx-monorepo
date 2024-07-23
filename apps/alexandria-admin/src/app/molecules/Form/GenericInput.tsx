@@ -5,16 +5,20 @@ export const GenericInput = ({
   register,
   errors,
   label,
+  divElement,
+  inputElement,
   ...rest
 }: {
   register: any;
   errors: any;
   label: string;
-} & React.HTMLAttributes<HTMLDivElement>) => {
+  divElement?: React.HTMLAttributes<HTMLDivElement>;
+  inputElement?: React.InputHTMLAttributes<HTMLInputElement>;
+}) => {
   return (
-    <div {...rest}>
+    <div {...divElement}>
       <Label>{label}</Label>
-      <Input {...register} className="sm:min-w-64" />
+      <Input {...inputElement} type="" {...register} className="sm:min-w-64" />
       {errors ? <p className="text-red-500">{errors.message}</p> : null}
     </div>
   );

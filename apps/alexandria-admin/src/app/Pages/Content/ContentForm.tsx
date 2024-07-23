@@ -1,7 +1,7 @@
 import { toast } from '@alexandria/shadcn-ui/components/ui/use-toast';
 import { useForm } from 'react-hook-form';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { Button, Checkbox } from '@alexandria/shadcn-ui';
+import { Button, Checkbox, Input } from '@alexandria/shadcn-ui';
 import request from '../../services';
 import { useNavigate } from 'react-router-dom';
 import { CreateContentSchemaDTO } from '@alexandria/shared-dto-api/content/formSchema';
@@ -32,7 +32,13 @@ export const ContentForm = ({ initialValues, editId }: Props) => {
         method: initialValues ? 'PATCH' : 'POST',
         data: {
           title: data.title,
-          description: data.description
+          description: data.description,
+          contentTypeId: data.contentTypeId,
+          numberPages: data.numberPages,
+          imageUrl: data.imageUrl,
+          contentType: {},
+          createdBy: {},
+          isbn: 'string'
         }
       });
       toast({
@@ -59,15 +65,18 @@ export const ContentForm = ({ initialValues, editId }: Props) => {
       className="space-y-4 p-4 w-6/12 mx-auto"
     >
       <div>
-        <label className="block text-sm font-medium text-gray-700">Title</label>
-        <input
-          type="text"
-          {...register('title', { required: true })}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        <GenericInput
+          errors={errors.title}
+          divElement={{
+            className:
+              'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
+          }}
+          label="Content's Title"
+          register={register('title', { required: true })}
+          inputElement={{
+            type: 'text'
+          }}
         />
-        {errors.title && (
-          <span className="text-red-500">This field is required</span>
-        )}
       </div>
 
       <div>
@@ -126,30 +135,20 @@ export const ContentForm = ({ initialValues, editId }: Props) => {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">ISBN</label>
-        <input
-          type="text"
-          {...register('isbn', { required: true })}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        <GenericInput
+          errors={errors.isbn}
+          divElement={{
+            className:
+              'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
+          }}
+          label="isbn"
+          register={register('isbn', { required: true })}
+          inputElement={{
+            type: 'text'
+          }}
         />
-        {errors.isbn && (
-          <span className="text-red-500">This field is required</span>
-        )}
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700">
-          Created By ID
-        </label>
-        <input
-          type="number"
-          {...register('createdById', { required: true })}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-        />
-        {errors.createdById && (
-          <span className="text-red-500">This field is required</span>
-        )}
-      </div>
       <div>
         <label className="block text-sm font-medium text-gray-700">
           Authors
