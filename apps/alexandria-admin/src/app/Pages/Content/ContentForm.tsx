@@ -6,6 +6,7 @@ import request from '../../services';
 import { useNavigate } from 'react-router-dom';
 import { CreateContentSchemaDTO } from '@alexandria/shared-dto-api/content/formSchema';
 import { GenericInput } from '../../molecules/Form/GenericInput';
+import { ComboboxDemo } from '../../molecules/Form/AutoCompleteInput';
 const resolver = classValidatorResolver(CreateContentSchemaDTO);
 
 type Props = {
@@ -168,15 +169,7 @@ export const ContentForm = ({ initialValues, editId }: Props) => {
         <label className="block text-sm font-medium text-gray-700">
           Genres
         </label>
-        <div className="flex space-x-4">
-          <label>
-            <Checkbox {...register('genres')} value="Genre 1" /> Genre 1
-          </label>
-          <label>
-            <Checkbox {...register('genres')} value="Genre 2" /> Genre 2
-          </label>
-          {/* Adicione mais opções conforme necessário */}
-        </div>
+        <ComboboxDemo />
       </div>
 
       <div>

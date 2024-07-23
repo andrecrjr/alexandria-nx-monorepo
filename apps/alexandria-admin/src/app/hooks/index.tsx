@@ -3,6 +3,8 @@ import { ActionsButtonAdmin } from '../types/ActionsList';
 import request from '../services';
 import { useNavigate } from 'react-router-dom';
 
+import { useState, useEffect } from 'react';
+
 export function useAdminButtons<T>(
   endpointType: string,
   warnUpdateKey: string
@@ -42,3 +44,19 @@ export function useAdminButtons<T>(
 
   return Actions;
 }
+
+export const useDebounce = (value: string, milliSeconds: number) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, milliSeconds);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, milliSeconds]);
+
+  return debouncedValue;
+};
