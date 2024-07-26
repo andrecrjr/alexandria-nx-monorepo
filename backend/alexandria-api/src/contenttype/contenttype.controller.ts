@@ -5,6 +5,8 @@ import {
   Param,
   Patch,
   Post,
+  Query,
+  Request,
   UseGuards
 } from '@nestjs/common';
 import { ContenttypeService } from './contenttype.service';
@@ -39,5 +41,12 @@ export class ContenttypeController {
   @Patch(':id')
   updateType(@Body() data: UpdateContentTypeDTO, @Param('id') id: string) {
     return this.contentTypeService.updateContentType(parseInt(id), data);
+  }
+
+  @ApiBearerAuth('defaultBearerAuth')
+  @Get('search')
+  @UseGuards(AuthGuard)
+  searchCollectionByUser(@Query('q') query, @Request() req) {
+    return this.contentTypeService.search(query);
   }
 }

@@ -2,6 +2,7 @@
 import {
   IsDate,
   IsInt,
+  IsNumber,
   IsOptional,
   IsString,
   ValidateNested
@@ -23,14 +24,11 @@ export class ContentDTO {
 
   createdBy?: UserDTO;
   isbn?: string;
-  createdById: number;
-  createdAt?: Date = new Date();
-  updatedAt?: Date = new Date();
-
+  createdById?: number;
+  createdAt?: Date;
+  updatedAt?: Date;
   collections?: CollectionDto[];
-
   authors?: AuthorIdDTO[];
-
   genres?: GenreIdDTO[];
 }
 
@@ -40,7 +38,7 @@ export class CreateContentSchemaDTO {
   id?: number;
 
   @IsString()
-  title?: string;
+  title: string;
 
   @IsString()
   description: string;
@@ -56,37 +54,28 @@ export class CreateContentSchemaDTO {
   imageUrl?: string;
 
   @IsOptional()
-  @ValidateNested({ each: true })
-  // @Type(() => ContentTypeDTO)
   contentType?: ContentTypeDTO;
 
   @ValidateNested({ each: true })
-  // @Type(() => UserDTO)
   createdBy?: UserDTO;
 
-  @IsOptional()
   @IsString()
+  @IsOptional()
   isbn?: string;
 
+  @IsNumber()
   @IsOptional()
-  @IsString()
-  createdById: number;
+  createdById?: number;
 
   @IsOptional()
   @IsDate()
-  createdAt?: Date = new Date();
-
-  @IsOptional()
-  @IsDate()
-  updatedAt?: Date = new Date();
+  updatedAt?: Date;
 
   @IsOptional()
   @ValidateNested({ each: true })
-  // @Type(() => CollectionDto)
   collections?: CollectionDto[];
 
   @IsOptional()
-  // @Type(() => AuthorIdDTO)
   authors?: AuthorIdDTO[];
 
   @IsOptional()

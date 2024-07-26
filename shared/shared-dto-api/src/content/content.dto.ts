@@ -1,10 +1,5 @@
 // ContentDTO.ts
-import {
-  IsInt,
-  IsString,
-  IsOptional,
-  ValidateNested,
-} from 'class-validator';
+import { IsInt, IsString, IsOptional, ValidateNested } from 'class-validator';
 import { ApiProperty, PartialType, PickType } from '@nestjs/swagger';
 import { ContentDTO, CreateContentSchemaDTO } from './formSchema';
 import { UpdateUserProfileDTO } from '../user/users.dto';
@@ -15,21 +10,19 @@ import { ContentTypeDTO } from '../content-type/formSchema';
 import { AuthorIdDTO } from '../authors/formSchema';
 import { GenreIdDTO } from '../genre-content/genre-content.dto';
 
-
 export class CreateContentDTO extends CreateContentSchemaDTO {
-
   @ApiProperty({ description: 'The title of the content.', required: true })
   title: string;
 
   @ApiProperty({
     description: 'A detailed description of the content.',
-    required: true,
+    required: true
   })
   description: string;
 
   @ApiProperty({
     description: 'The identifier for the associated content type.',
-    required: true,
+    required: true
   })
   contentTypeId: number;
 
@@ -38,29 +31,30 @@ export class CreateContentDTO extends CreateContentSchemaDTO {
 
   @ApiProperty({
     description: "The URL of the content's cover image.",
-    required: false,
+    required: false
   })
   imageUrl?: string;
 
   @ApiProperty({
     description: `The content type's track for this Content`,
+    required: false
   })
   contentType?: ContentTypeDTO;
 
   @ApiProperty({
-    description: `User that created this content`,
+    description: `User that created this content`
   })
   createdBy?: UserDTO;
 
   @ApiProperty({
     description: 'The International Standard Book Number (ISBN).',
-    required: false,
+    required: false
   })
   isbn?: string;
 
   @ApiProperty({
     description: 'The identifier of the user who created the content.',
-    required: false,
+    required: false
   })
   createdById: number;
 
@@ -71,21 +65,21 @@ export class CreateContentDTO extends CreateContentSchemaDTO {
   @ApiProperty({
     description: 'The collections to which the content is associated.',
     type: [CollectionDto],
-    required: false,
+    required: false
   })
   collections?: CollectionDto[];
 
   @ApiProperty({
     description: 'The authors of the content.',
     type: [AuthorIdDTO],
-    required: false,
+    required: false
   })
   authors?: AuthorIdDTO[];
 
   @ApiProperty({
     description: "The genre's content",
     type: [GenreIdDTO],
-    required: true,
+    required: true
   })
   genres?: GenreIdDTO[];
 }
@@ -96,38 +90,38 @@ export class UpdateContentDTO extends PartialType(CreateContentSchemaDTO) {
 
   @ApiProperty({
     description: 'A detailed description of the content.',
-    required: false,
+    required: false
   })
   description?: string;
 
   @ApiProperty({
     description: 'The identifier for the associated content type.',
-    required: false,
+    required: false
   })
   contentTypeId?: number;
 
   @ApiProperty({
     description: 'The total number of pages in the content.',
-    required: false,
+    required: false
   })
   @IsInt()
   numberPages?: number;
 
   @ApiProperty({
     description: "The URL of the content's cover image.",
-    required: false,
+    required: false
   })
   imageUrl?: string;
 
   @ApiProperty({
     description: 'The International Standard Book Number (ISBN).',
-    required: false,
+    required: false
   })
   isbn?: string;
 
   @ApiProperty({
     description: 'The identifier of the user who created the content.',
-    required: false,
+    required: false
   })
   createdById?: number;
 

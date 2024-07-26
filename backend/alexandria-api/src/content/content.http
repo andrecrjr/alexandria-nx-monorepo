@@ -13,10 +13,10 @@ Content-Type: application/json
 # @name login
 POST http://localhost:3000/auth/refresh
 Authorization: Bearer {{login.response.body.accessToken}}
-Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZXhhbXBsZS5jb20iLCJzdWIiOjEsImlhdCI6MTcxODc1MzE1NiwiZXhwIjoxNzIxMzQ1MTU2fQ.mrmfu82jpo890pvfl_P581zRLLaDE6c9w9yDNYD0ovs; Max-Age=86400000; Path=/; HttpOnly
+Cookie: refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZHJlLWNhcmxvc0BMaXZlLmNvbSIsInN1YiI6MSwiaWF0IjoxNzIxOTUzODAyLCJleHAiOjE3MjQ1NDU4MDJ9.MZjZu0y6Es2WxZKM5L9fsPsmjOKfuLd_HtqV4RAU3EU; Max-Age=86400000; Path=/; HttpOnly
 
 ### create status content type
-POST http://localhost:3000/status-contentype
+POST http://localhost:3000/status-tracker
 Authorization: Bearer {{login.response.body.accessToken}}
 Content-Type: application/json
 
@@ -84,5 +84,5 @@ Content-Type: application/json
 }
 
 ### Search content
-GET http://localhost:3000/content/search?q=
+GET http://localhost:3000/content/search?q=Death
 Authorization: Bearer {{login.response.body.accessToken}}

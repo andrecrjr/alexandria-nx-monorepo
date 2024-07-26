@@ -95,4 +95,16 @@ export class ContenttypeService {
 
     return result;
   }
+
+  async search(partialContent: string) {
+    const data = await this.prismaService['contentType'].findMany({
+      where: {
+        title: {
+          contains: partialContent,
+          mode: 'insensitive'
+        }
+      }
+    });
+    return data;
+  }
 }

@@ -3,7 +3,10 @@ import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'backend/alexandria-api/prisma/prisma.service';
 import { JwtDTO } from '../auth/jwt.dto';
-import { CreateContentDTO, UpdateContentDTO } from "@alexandria/shared-dto-api/content/content.dto"
+import {
+  CreateContentDTO,
+  UpdateContentDTO
+} from '@alexandria/shared-dto-api/content/content.dto';
 import { ContentDTO } from '@alexandria/shared-dto-api/content/formSchema';
 
 @Injectable()
@@ -12,36 +15,44 @@ export class ContentService {
 
   convertCreatePrisma(
     data: CreateContentDTO,
-    user: JwtDTO,
+    user: JwtDTO
   ): Prisma.ContentCreateInput {
-    const { collections, contentType, authors, genres, ...rest } = data;
+    const {
+      collections,
+      contentType,
+      authors,
+      genres,
+      contentTypeId,
+      ...rest
+    } = data;
     return {
       ...rest,
       createdById: user.sub,
-      contentType: contentType
-        ? {
-            connect: {
-              id: contentType.id,
-            },
-          }
-        : undefined,
+      contentType:
+        contentType || contentTypeId
+          ? {
+              connect: {
+                id: contentType.id || contentTypeId
+              }
+            }
+          : undefined,
       collection: collections
         ? {
-            connect: collections?.map((items) => ({ id: items.id })),
+            connect: collections?.map((items) => ({ id: items.id }))
           }
         : undefined,
       authors: authors
         ? {
-            connect: authors?.map((items) => ({ id: items.id })),
+            connect: authors?.map((items) => ({ id: items.id }))
           }
         : undefined,
       genres: genres
         ? {
             connect: genres.map((genre) => ({
-              id: genre.id,
-            })),
+              id: genre.id
+            }))
           }
-        : undefined,
+        : undefined
     } as Prisma.ContentCreateInput;
   }
 
@@ -52,29 +63,29 @@ export class ContentService {
       contentType: contentType
         ? {
             connect: {
-              id: contentType.id,
-            },
+              id: contentType.id
+            }
           }
         : undefined,
       collection: collections
         ? {
-            connect: collections?.map((items) => ({ id: items.id })),
+            connect: collections?.map((items) => ({ id: items.id }))
           }
         : undefined,
       authors: authors
         ? {
             set: [],
-            connect: authors?.map((items) => ({ id: items.id })),
+            connect: authors?.map((items) => ({ id: items.id }))
           }
         : undefined,
       genres: genres
         ? {
             set: [],
             connect: genres.map((genre) => ({
-              id: genre.id,
-            })),
+              id: genre.id
+            }))
           }
-        : undefined,
+        : undefined
     } as Prisma.ContentUpdateInput;
   }
 
@@ -86,32 +97,32 @@ export class ContentService {
           select: {
             updatedAt: false,
             createdAt: true,
-            username: true,
-          },
+            username: true
+          }
         },
         contentType: {
           include: {
-            statusTracker: true,
-          },
+            statusTracker: true
+          }
         },
         genres: {
           select: {
             id: true,
-            name: true,
-          },
+            name: true
+          }
         },
-        series: true,
-      },
+        series: true
+      }
     });
   }
 
   async createContent(
     contentData: CreateContentDTO,
-    user: JwtDTO,
+    user: JwtDTO
   ): Promise<ContentDTO> {
     const prismaData = this.convertCreatePrisma(contentData, user);
     const data = await this.prismaService.content.create({
-      data: { ...prismaData },
+      data: { ...prismaData }
     });
     return data;
   }
@@ -122,42 +133,42 @@ export class ContentService {
         authors: true,
         contentType: {
           include: {
-            statusTracker: true,
-          },
-        },
-      },
+            statusTracker: true
+          }
+        }
+      }
     });
   }
 
   async updateContent(
     id: number,
-    contentData: UpdateContentDTO,
+    contentData: UpdateContentDTO
   ): Promise<ContentDTO> {
     const prismaData = this.convertUpdatePrisma(contentData);
     const data = await this.prismaService.content.update({
       where: {
-        id,
+        id
       },
       data: {
-        ...prismaData,
-      },
+        ...prismaData
+      }
     });
     return data;
   }
 
   async searchInsideCollectionByContentName(
-    query: string,
+    query: string
   ): Promise<ContentDTO[]> {
     const data = await this.prismaService.content.findMany({
       where: {
         title: {
-          contains: query,
-        },
+          contains: query
+        }
       },
       include: {
         authors: true,
-        contentType: true,
-      },
+        contentType: true
+      }
     });
     return data;
   }

@@ -1,12 +1,12 @@
 import { toast } from '@alexandria/shadcn-ui/components/ui/use-toast';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import { Button, Checkbox, Input } from '@alexandria/shadcn-ui';
 import request from '../../services';
 import { useNavigate } from 'react-router-dom';
 import { CreateContentSchemaDTO } from '@alexandria/shared-dto-api/content/formSchema';
 import { GenericInput } from '../../molecules/Form/GenericInput';
-import { ComboboxDemo } from '../../molecules/Form/AutoCompleteInput';
+import MultiSelect from '../../molecules/Form/MultiSelectInput';
 const resolver = classValidatorResolver(CreateContentSchemaDTO);
 
 type Props = {
@@ -20,39 +20,44 @@ export const ContentForm = ({ initialValues, editId }: Props) => {
   const {
     handleSubmit,
     register,
-    formState: { errors }
+    control,
+    getValues,
+
+    formState: { errors, defaultValues }
   } = useForm<CreateContentSchemaDTO>({
     resolver: resolver,
     defaultValues: { ...initialValues }
   });
   const goTo = useNavigate();
+  console.log(getValues());
 
   async function onSubmit(data: CreateContentSchemaDTO) {
     try {
-      await request(`${apiEndpoint}${initialValues ? `/${editId}` : ''}`, {
-        method: initialValues ? 'PATCH' : 'POST',
-        data: {
-          title: data.title,
-          description: data.description,
-          contentTypeId: data.contentTypeId,
-          numberPages: data.numberPages,
-          imageUrl: data.imageUrl,
-          contentType: {},
-          createdBy: {},
-          isbn: 'string'
-        }
-      });
-      toast({
-        title: `You ${editId ? 'updated' : 'submitted'} the following Genre:`,
-        description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">
-              {JSON.stringify(data.title, null)}
-            </code>
-          </pre>
-        )
-      });
-      goTo(`/${apiEndpoint}`);
+      console.log(data);
+      // await request(`${apiEndpoint}${initialValues ? `/${editId}` : ''}`, {
+      //   method: initialValues ? 'PATCH' : 'POST',
+      //   data: {
+      //     title: data.title,
+      //     description: data.description,
+      //     contentTypeId: data.contentTypeId,
+      //     numberPages: data.numberPages,
+      //     imageUrl: data.imageUrl,
+      //     contentType: {},
+      //     createdBy: {},
+      //     isbn: 'string'
+      //   }
+      // });
+      // toast({
+      //   title: `You ${editId ? 'updated' : 'submitted'} the following Genre:`,
+      //   description: (
+      //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+      //       <code className="text-white">
+      //         {JSON.stringify(data.title, null)}
+      //       </code>
+      //     </pre>
+      //   )
+      // });
+      // goTo(`/${apiEndpoint}`);
     } catch (error) {
       toast({
         title: 'Problem to send data to the server',
@@ -95,30 +100,34 @@ export const ContentForm = ({ initialValues, editId }: Props) => {
 
       <div>
         <label className="block text-sm font-medium text-gray-700">
-          Content Type ID
+          Content Type
         </label>
-        <input
-          type="number"
-          {...register('contentTypeId', { required: true })}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        <Controller
+          name="contentType"
+          control={control}
+          render={({ field }) => (
+            <MultiSelect
+              field={field}
+              api={'contenttype'}
+              defaultValue={defaultValues?.contentType}
+            />
+          )}
         />
-        {errors.contentTypeId && (
-          <span className="text-red-500">This field is required</span>
-        )}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">
-          Number of Pages
-        </label>
-        <input
-          type="number"
-          {...register('numberPages', { required: true })}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        <GenericInput
+          errors={errors.title}
+          divElement={{
+            className:
+              'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
+          }}
+          label="Page's Number"
+          register={register('numberPages', { required: true })}
+          inputElement={{
+            type: 'text'
+          }}
         />
-        {errors.numberPages && (
-          <span className="text-red-500">This field is required</span>
-        )}
       </div>
 
       <div>
@@ -169,17 +178,20 @@ export const ContentForm = ({ initialValues, editId }: Props) => {
         <label className="block text-sm font-medium text-gray-700">
           Genres
         </label>
-        <ComboboxDemo />
+        {/* <ComboboxDemo /> */}
+        <Controller
+          name="genres"
+          control={control}
+          render={({ field }) => <MultiSelect field={field} />}
+        />
       </div>
 
-      <div>
-        <button
-          type="submit"
-          className="mt-2 w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-700"
-        >
-          Submit
-        </button>
-      </div>
+      <Button
+        type="submit"
+        className="mt-2 w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-700"
+      >
+        Submit
+      </Button>
     </form>
   );
 };
