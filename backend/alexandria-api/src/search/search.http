@@ -13,4 +13,4 @@ Content-Type: application/json
 GET http://localhost:3000/search?entity=genre&field=name&value=R
 
 ### find content
-GET http://localhost:3000/search?entity=content&field=title&value=one piece
+GET http://localhost:3000/search?entity=contenttype&field=title&value=boo

@@ -7,6 +7,10 @@ import { useNavigate } from 'react-router-dom';
 import { CreateContentSchemaDTO } from '@alexandria/shared-dto-api/content/formSchema';
 import { GenericInput } from '../../molecules/Form/GenericInput';
 import MultiSelect from '../../molecules/Form/MultiSelectInput';
+import {
+  EntityDatabase,
+  entitySettings
+} from '@alexandria/shared-dto-api/enums';
 const resolver = classValidatorResolver(CreateContentSchemaDTO);
 
 type Props = {
@@ -14,7 +18,9 @@ type Props = {
   editId?: string;
 };
 
-const apiEndpoint = 'contenttype';
+const apiEndpoint = entitySettings[EntityDatabase.Content];
+const contentTypeSettings = entitySettings[EntityDatabase.ContentType];
+const genreSettings = entitySettings[EntityDatabase.Genre];
 
 export const ContentForm = ({ initialValues, editId }: Props) => {
   const {
@@ -27,10 +33,11 @@ export const ContentForm = ({ initialValues, editId }: Props) => {
     defaultValues: { ...initialValues }
   });
   // const goTo = useNavigate();
+  console.log(defaultValues);
   async function onSubmit(data: CreateContentSchemaDTO) {
     console.log(data);
     try {
-      // await request(`${apiEndpoint}${initialValues ? `/${editId}` : ''}`, {
+      // await request(`${apiEndpoint.apiSlug}${initialValues ? `/${editId}` : ''}`, {
       //   method: initialValues ? 'PATCH' : 'POST',
       //   data: {
       //     title: data.title,
@@ -104,7 +111,7 @@ export const ContentForm = ({ initialValues, editId }: Props) => {
           render={({ field }) => (
             <MultiSelect
               field={field}
-              api={'contenttype'}
+              apiSettings={contentTypeSettings}
               defaultValue={defaultValues?.contentType}
             />
           )}
@@ -177,7 +184,13 @@ export const ContentForm = ({ initialValues, editId }: Props) => {
         <Controller
           name="genres"
           control={control}
-          render={({ field }) => <MultiSelect field={field} />}
+          render={({ field }) => (
+            <MultiSelect
+              field={field}
+              apiSettings={genreSettings}
+              defaultValue={defaultValues?.genres}
+            />
+          )}
         />
       </div>
 
