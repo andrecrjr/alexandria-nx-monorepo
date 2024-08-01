@@ -21,19 +21,15 @@ export const ContentForm = ({ initialValues, editId }: Props) => {
     handleSubmit,
     register,
     control,
-    getValues,
-
     formState: { errors, defaultValues }
   } = useForm<CreateContentSchemaDTO>({
     resolver: resolver,
     defaultValues: { ...initialValues }
   });
-  const goTo = useNavigate();
-  console.log(getValues());
-
+  // const goTo = useNavigate();
   async function onSubmit(data: CreateContentSchemaDTO) {
+    console.log(data);
     try {
-      console.log(data);
       // await request(`${apiEndpoint}${initialValues ? `/${editId}` : ''}`, {
       //   method: initialValues ? 'PATCH' : 'POST',
       //   data: {
@@ -117,15 +113,15 @@ export const ContentForm = ({ initialValues, editId }: Props) => {
 
       <div>
         <GenericInput
-          errors={errors.title}
+          errors={errors.numberPages}
           divElement={{
             className:
               'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50'
           }}
           label="Page's Number"
-          register={register('numberPages', { required: true })}
+          register={register('numberPages', { valueAsNumber: true })}
           inputElement={{
-            type: 'text'
+            type: 'number'
           }}
         />
       </div>
@@ -178,7 +174,6 @@ export const ContentForm = ({ initialValues, editId }: Props) => {
         <label className="block text-sm font-medium text-gray-700">
           Genres
         </label>
-        {/* <ComboboxDemo /> */}
         <Controller
           name="genres"
           control={control}

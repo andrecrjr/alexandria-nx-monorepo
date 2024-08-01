@@ -1,0 +1,16 @@
+### AUTH Login
+# @name login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "andre-carlos@Live.com",
+  "password": "123456"
+}
+
+### find
+
+GET http://localhost:3000/search?entity=genre&field=name&value=R
+
+### find content
+GET http://localhost:3000/search?entity=content&field=title&value=one piece
