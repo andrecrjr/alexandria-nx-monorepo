@@ -32,13 +32,8 @@ export class CreateContentTypeSchemaDTO extends ContentTypeDTO {
   description: string;
 
   @ValidateNested({ each: true })
-  // @Type(() => ContentIdDTO)
   contents: ContentIdDTO[];
-
-  //   @ApiProperty({ required: true })
-  //   @Type(() => StatusTrackIdDTO)
-  //   statusTracker: StatusTrackIdDTO;
-
+  
   statusTrackerId: number;
 }
 

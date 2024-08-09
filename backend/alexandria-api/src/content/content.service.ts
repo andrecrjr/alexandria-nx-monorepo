@@ -27,7 +27,13 @@ export class ContentService {
     } = data;
     return {
       ...rest,
-      createdById: user.sub,
+      createdBy: user
+        ? {
+            connect: {
+              id: user.sub
+            }
+          }
+        : undefined,
       contentType:
         contentType || contentTypeId
           ? {
@@ -111,7 +117,8 @@ export class ContentService {
             name: true
           }
         },
-        series: true
+        series: true,
+        authors: true
       }
     });
   }
@@ -136,6 +143,9 @@ export class ContentService {
             statusTracker: true
           }
         }
+      },
+      orderBy: {
+        createdAt: 'desc'
       }
     });
   }

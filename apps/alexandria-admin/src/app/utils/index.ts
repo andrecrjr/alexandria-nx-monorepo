@@ -27,3 +27,13 @@ export function extractItemsWithMenuName(data: RouteObjectMenu[]) {
   findItemsWithMenuName(data);
   return result;
 }
+
+export const convertMultiSelectToApiData = (
+  multiSelectValue: { value: number; label: string },
+  apiIndex: string
+) => {
+  return {
+    id: multiSelectValue.value,
+    [apiIndex]: multiSelectValue.value
+  };
+};

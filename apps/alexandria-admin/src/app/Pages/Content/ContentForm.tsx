@@ -1,7 +1,7 @@
 import { toast } from '@alexandria/shadcn-ui/components/ui/use-toast';
 import { Controller, useForm } from 'react-hook-form';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { Button, Checkbox, Input } from '@alexandria/shadcn-ui';
+import { Button } from '@alexandria/shadcn-ui';
 import request from '../../services';
 import { useNavigate } from 'react-router-dom';
 import { CreateContentSchemaDTO } from '@alexandria/shared-dto-api/content/formSchema';
@@ -21,6 +21,7 @@ type Props = {
 const apiEndpoint = entitySettings[EntityDatabase.Content];
 const contentTypeSettings = entitySettings[EntityDatabase.ContentType];
 const genreSettings = entitySettings[EntityDatabase.Genre];
+const authorSettings = entitySettings[EntityDatabase.AuthorContent];
 
 export const ContentForm = ({ initialValues, editId }: Props) => {
   const {
@@ -32,35 +33,36 @@ export const ContentForm = ({ initialValues, editId }: Props) => {
     resolver: resolver,
     defaultValues: { ...initialValues }
   });
-  // const goTo = useNavigate();
-  console.log(defaultValues);
+  const goTo = useNavigate();
   async function onSubmit(data: CreateContentSchemaDTO) {
-    console.log(data);
     try {
-      // await request(`${apiEndpoint.apiSlug}${initialValues ? `/${editId}` : ''}`, {
-      //   method: initialValues ? 'PATCH' : 'POST',
-      //   data: {
-      //     title: data.title,
-      //     description: data.description,
-      //     contentTypeId: data.contentTypeId,
-      //     numberPages: data.numberPages,
-      //     imageUrl: data.imageUrl,
-      //     contentType: {},
-      //     createdBy: {},
-      //     isbn: 'string'
-      //   }
-      // });
-      // toast({
-      //   title: `You ${editId ? 'updated' : 'submitted'} the following Genre:`,
-      //   description: (
-      //     <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-      //       <code className="text-white">
-      //         {JSON.stringify(data.title, null)}
-      //       </code>
-      //     </pre>
-      //   )
-      // });
-      // goTo(`/${apiEndpoint}`);
+      await request(
+        `${apiEndpoint.apiSlug}${initialValues ? `/${editId}` : ''}`,
+        {
+          method: initialValues ? 'PATCH' : 'POST',
+          data: {
+            title: data.title,
+            description: data.description,
+            numberPages: data.numberPages,
+            imageUrl: data.imageUrl,
+            contentType: data.contentType ? data.contentType : null,
+            isbn: data.isbn,
+            authors: data.authors,
+            genres: data.genres
+          }
+        }
+      );
+      toast({
+        title: `You ${editId ? 'updated' : 'submitted'} the following Genre:`,
+        description: (
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <code className="text-white">
+              {JSON.stringify(data.title, null)}
+            </code>
+          </pre>
+        )
+      });
+      goTo(`/${apiEndpoint.apiSlug}`);
     } catch (error) {
       toast({
         title: 'Problem to send data to the server',
@@ -113,6 +115,7 @@ export const ContentForm = ({ initialValues, editId }: Props) => {
               field={field}
               apiSettings={contentTypeSettings}
               defaultValue={defaultValues?.contentType}
+              isMulti={false}
             />
           )}
         />
@@ -166,15 +169,17 @@ export const ContentForm = ({ initialValues, editId }: Props) => {
         <label className="block text-sm font-medium text-gray-700">
           Authors
         </label>
-        <div className="flex space-x-4">
-          <label>
-            <Checkbox {...register('authors')} value="Author 1" /> Author 1
-          </label>
-          <label>
-            <Checkbox {...register('authors')} value="Author 2" /> Author 2
-          </label>
-          {/* Adicione mais opções conforme necessário */}
-        </div>
+        <Controller
+          name="authors"
+          control={control}
+          render={({ field }) => (
+            <MultiSelect
+              field={field}
+              apiSettings={authorSettings}
+              defaultValue={defaultValues?.authors}
+            />
+          )}
+        />
       </div>
 
       <div>

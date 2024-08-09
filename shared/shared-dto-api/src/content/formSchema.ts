@@ -56,8 +56,8 @@ export class CreateContentSchemaDTO {
   @IsOptional()
   contentType?: ContentTypeDTO;
 
-  @ValidateNested({ each: true })
-  createdBy?: UserDTO;
+  // @ValidateNested({ each: true })
+  // createdBy?: UserDTO;
 
   @IsString()
   @IsOptional()

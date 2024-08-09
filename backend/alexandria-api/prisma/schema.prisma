@@ -101,6 +101,7 @@ model Content {
   createdBy   User?        @relation(fields: [createdById], references: [id])
   createdById Int?
   createdAt   DateTime     @default(now())
+  updateAt    DateTime     @updatedAt @default(now())
   collection  Collection[]
   numberPages Int?
   series  SeriesContent? @relation(fields: [seriesId], references: [id])

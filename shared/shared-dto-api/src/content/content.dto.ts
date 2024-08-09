@@ -98,7 +98,7 @@ export class UpdateContentDTO extends PartialType(CreateContentSchemaDTO) {
     description: 'The identifier for the associated content type.',
     required: false
   })
-  contentTypeId?: number;
+  contentType?: ContentTypeDTO;
 
   @ApiProperty({
     description: 'The total number of pages in the content.',
