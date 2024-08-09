@@ -145,7 +145,7 @@ export class ContentService {
         }
       },
       orderBy: {
-        createdAt: 'desc'
+        updateAt: 'desc'
       }
     });
   }
