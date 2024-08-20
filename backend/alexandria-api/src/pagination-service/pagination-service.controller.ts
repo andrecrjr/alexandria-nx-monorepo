@@ -7,7 +7,6 @@ import {
   DefaultValuePipe
 } from '@nestjs/common';
 import { PaginationService } from './pagination-service.service';
-import { EntityDatabase } from '@alexandria/shared-dto-api/enums';
 
 @Controller('pagination')
 export class PaginationController {
