@@ -1,0 +1,16 @@
+
+### AUTH Login
+# @name login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "andre-carlos@Live.com",
+  "password": "123456"
+}
+
+### GET pagination
+GET http://localhost:3000/pagination/genre
+
+### GET pagination content
+GET http://localhost:3000/pagination/authorContent

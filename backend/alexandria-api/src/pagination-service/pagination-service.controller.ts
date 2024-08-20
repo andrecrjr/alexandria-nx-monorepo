@@ -1,5 +1,13 @@
-import { Controller, Get, Query, Param, ParseIntPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Query,
+  Param,
+  ParseIntPipe,
+  DefaultValuePipe
+} from '@nestjs/common';
 import { PaginationService } from './pagination-service.service';
+import { EntityDatabase } from '@alexandria/shared-dto-api/enums';
 
 @Controller('pagination')
 export class PaginationController {
@@ -9,9 +17,10 @@ export class PaginationController {
   async getPaginatedData(
     @Param('model') model: string,
     @Query('filters') filters: any,
-    @Query('page', ParseIntPipe) page = 1,
-    @Query('limit', ParseIntPipe) limit = 10
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
+    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number
   ) {
+    console.log(model);
     return this.paginationService.getPaginatedData(model, filters, page, limit);
   }
 }
