@@ -20,7 +20,6 @@ export class PaginationController {
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number
   ) {
-    console.log(model);
     return this.paginationService.getPaginatedData(model, filters, page, limit);
   }
 }
